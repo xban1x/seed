@@ -95,7 +95,7 @@ export class LayoutService extends Service<LayoutState> {
 
   openFullscreen (): void {
     if ( !this._fullScreenSupport ) {
-      resolve( false );
+      return;
     }
     this._document.body.requestFullScreen();
     if ( isNil( this.state.backgroundColor ) ) {
