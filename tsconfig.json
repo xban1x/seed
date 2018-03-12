@@ -1,11 +1,9 @@
 {
-  "compileOnSave": false,
-  "compilerOptions": {
-    "baseUrl": ".",
-    "paths": {
-      "@libs/*": [
-        "*"
-      ]
-    }
-  }
+	"compileOnSave": false,
+	"compilerOptions": {
+		"baseUrl": ".",
+		"paths": {
+			"@seed/*": ["*"]
+		}
+	}
 }

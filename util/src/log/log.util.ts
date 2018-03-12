@@ -1,7 +1,7 @@
 import { isBrowser } from '../functions/index';
 // Libs
-import { LogCode, LogSeverity } from '@libs/enums';
-import { Config } from '@libs/models';
+import { LogCode, LogSeverity } from '@seed/enums';
+import { Config } from '@seed/models';
 // Lodash
 import isNil from 'lodash/isNil';
 

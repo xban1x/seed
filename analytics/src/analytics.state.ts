@@ -3,12 +3,14 @@ import { Property } from './property.model';
 import { Response } from './response.model';
 import { Event } from './event.model';
 // Libs
-import { State } from '@libs/interfaces';
+import { State } from '@seed/interfaces';
 
-export class AnalyticsState<T extends any | AnalyticKey = AnalyticKey> extends State {
-  static readonly STORE_NAME = 'analytics';
-  events: { id: string, event: Event }[];
-  properties: Property<T>[];
-  propertiesVersions: [ Property<T>[] ];
-  responses: Response[];
+export class AnalyticsState<
+	T extends any | AnalyticKey = AnalyticKey
+> extends State {
+	static readonly STORE_NAME = 'analytics';
+	events: { id: string; event: Event }[];
+	properties: Property<T>[];
+	propertiesVersions: [Property<T>[]];
+	responses: Response[];
 }
