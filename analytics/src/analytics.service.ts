@@ -86,6 +86,10 @@ export class AnalyticsService<
 		});
 	}
 
+	getProperty(name: string): Property<T> {
+		return this.state.properties.find(val => val.name === name);
+	}
+
 	updateProperty(property: Property<T>, override = false): void {
 		if (isNil(property.value) || property.value === '') {
 			return;
@@ -140,7 +144,7 @@ export class AnalyticsService<
 				value: this._platform.getCurrentURLDomain()
 			},
 			{
-				name: AnalyticKey.FULLSCREEN,
+				name: AnalyticKey.BROWSER_FULLSCREEN,
 				value: this._layout.isFullScreen()
 			},
 			{
@@ -187,15 +191,15 @@ export class AnalyticsService<
 	private _onPlatformChange(platform: PlatformState): void {
 		const properties: Property<T>[] = [
 			{
-				name: AnalyticKey.ONLINE,
+				name: AnalyticKey.BROWSER_ONLINE,
 				value: platform.online
 			},
 			{
-				name: AnalyticKey.NAVIGATION_TYPE,
+				name: AnalyticKey.BROWSER_NAVIGATION_TYPE,
 				value: platform.navigationType
 			},
 			{
-				name: AnalyticKey.NAVIGATION_TYPE,
+				name: AnalyticKey.BROWSER_NAVIGATION_TYPE,
 				value: platform.navigationType
 			},
 			{
@@ -257,27 +261,27 @@ export class AnalyticsService<
 	private _onLayoutChange(layout: LayoutState): void {
 		const properties: Property<T>[] = [
 			{
-				name: AnalyticKey.FULLSCREEN,
+				name: AnalyticKey.BROWSER_FULLSCREEN,
 				value: layout.isFullScreen
 			},
 			{
-				name: AnalyticKey.SCREEN_WIDTH,
+				name: AnalyticKey.DEVICE_SCREEN_WIDTH,
 				value: this._layout.getScreenWidth()
 			},
 			{
-				name: AnalyticKey.SCREEN_HEIGHT,
+				name: AnalyticKey.DEVICE_SCREEN_HEIGHT,
 				value: this._layout.getScreenHeight()
 			},
 			{
-				name: AnalyticKey.WINDOW_WIDTH,
+				name: AnalyticKey.BROWSER_WINDOW_WIDTH,
 				value: layout.width
 			},
 			{
-				name: AnalyticKey.WINDOW_HEIGHT,
+				name: AnalyticKey.BROWSER_WINDOW_HEIGHT,
 				value: layout.height
 			},
 			{
-				name: AnalyticKey.SCREEN_ORIENTATION,
+				name: AnalyticKey.DEVICE_ORIENTATION,
 				value: layout.orientation
 			}
 		];
