@@ -400,15 +400,24 @@ export class PlatformService extends Service<PlatformState> {
 	}
 
 	isChrome(): boolean {
-		return this.state.browser === Browser.CHROME;
+		return (
+			this.state.browser === Browser.CHROME ||
+			this.state.browser === Browser.CHROME_IOS
+		);
 	}
 
 	isFirefox(): boolean {
-		return this.state.browser === Browser.FIREFOX;
+		return (
+			this.state.browser === Browser.FIREFOX ||
+			this.state.browser === Browser.FIREFOX_IOS
+		);
 	}
 
 	isSafari(): boolean {
-		return this.state.browser === Browser.SAFARI;
+		return (
+			this.state.browser === Browser.SAFARI ||
+			this.state.browser === Browser.SAFARI_IOS
+		);
 	}
 
 	isEdge(): boolean {
