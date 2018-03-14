@@ -75,14 +75,14 @@ export class PlatformService extends Service<PlatformState> {
 						if (isNil(performance) || isNil(performance.navigation)) {
 							return;
 						}
-						const state = new PlatformState(this.state);
+						const newState = new PlatformState(this.state);
 
-						state.navigationType = NavigationType.toString(
+						newState.navigationType = NavigationType.toString(
 							performance.navigation.type
 						);
 
-						this._setPlatformState(state);
-						this.state = state;
+						this._setPlatformState(newState);
+						this.state = newState;
 					});
 			}
 
@@ -95,13 +95,13 @@ export class PlatformService extends Service<PlatformState> {
 					if (isNil(navigator.connection)) {
 						return;
 					}
-					const state = new PlatformState(this.state);
+					const newState = new PlatformState(this.state);
 
-					state.connectionType = navigator.connection.type;
-					state.connectionEffectiveType = navigator.connection.effectiveType;
+					newState.connectionType = navigator.connection.type;
+					newState.connectionEffectiveType = navigator.connection.effectiveType;
 
-					this._setPlatformState(state);
-					this.state = state;
+					this._setPlatformState(newState);
+					this.state = newState;
 				});
 			}
 
