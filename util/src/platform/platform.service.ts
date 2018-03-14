@@ -168,7 +168,7 @@ export class PlatformService extends Service<PlatformState> {
 		if (/iPad|iPhone|iPod/.test(state.userAgent)) {
 			state.operatingSystem = OperatingSystem.IOS;
 			state.deviceType = DeviceType.MOBILE;
-		} else if (/android/.test(state.userAgent)) {
+		} else if (/(a|A)ndroid/.test(state.userAgent)) {
 			state.operatingSystem = OperatingSystem.ANDROID;
 			state.deviceType = DeviceType.MOBILE;
 		} else if (/Mac/.test(state.userAgent)) {
