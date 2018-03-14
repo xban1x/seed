@@ -216,7 +216,7 @@ export class AnalyticsService<
 			},
 			{
 				name: AnalyticKey.OS_VERSION,
-				value: platform.operatingSystemVersion.split('.', 2)[0]
+				value: (platform.operatingSystemVersion || '').split('.', 2)[0]
 			},
 			{
 				name: AnalyticKey.OS_VERSION_FULL,
@@ -228,7 +228,7 @@ export class AnalyticsService<
 			},
 			{
 				name: AnalyticKey.BROWSER_VERSION,
-				value: platform.browserVersion.split('.', 2)[0]
+				value: (platform.browserVersion || '').split('.', 2)[0]
 			},
 			{
 				name: AnalyticKey.BROWSER_VERSION_FULL,
