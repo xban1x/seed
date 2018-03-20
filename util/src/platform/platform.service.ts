@@ -198,6 +198,8 @@ export class PlatformService extends Service<PlatformState> {
 			state.browser = Browser.EDGE;
 		} else if (/Opera/.test(state.userAgent)) {
 			state.browser = Browser.OPERA;
+		} else if (/GSA/.test(state.userAgent)) {
+			state.browser = Browser.GOOGLE_SEARCH_APP_IOS;
 		} else if (state.operatingSystem === OperatingSystem.MAC_OS) {
 			state.browser = Browser.SAFARI;
 		} else if (state.operatingSystem === OperatingSystem.IOS) {
@@ -290,6 +292,14 @@ export class PlatformService extends Service<PlatformState> {
 			state.browserVersion = match[0].split('/', 2)[1];
 			return;
 		}
+		if (state.browser === Browser.GOOGLE_SEARCH_APP_IOS) {
+			const match = state.userAgent.match(/GSA\/(\d*\.?)*/g);
+			if (isNil(match)) {
+				return;
+			}
+			state.browserVersion = match[0].split('/', 2)[1];
+			return;
+		}
 		if (state.browser === Browser.IE) {
 			const match = state.userAgent.match(/rv:\/(\d*\.?)*/g);
 			if (isNil(match)) {
@@ -316,12 +326,13 @@ export class PlatformService extends Service<PlatformState> {
 			}
 		} else if (state.operatingSystem === OperatingSystem.ANDROID) {
 			const match = state.userAgent.match(
-				/Android (\d\.?){1,3}; (\w*(-\w*)?)/g
+				/Android (\d\.?){1,3}; (\w*(-\w*)? )*/g
 			)[0];
 			if (isNil(match)) {
 				return;
 			}
-			state.deviceName = match.split(' ', 3)[2];
+			const splits = match.trim().split(' ');
+			state.deviceName = splits[splits.length - 1];
 		}
 	}
 

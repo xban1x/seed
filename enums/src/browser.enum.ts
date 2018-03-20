@@ -1,12 +1,13 @@
 export enum Browser {
-  CHROME = 'Chrome',
-  FIREFOX = 'Firefox',
-  SAFARI = 'Safari',
-  CHROME_IOS = 'Chrome iOs',
-  FIREFOX_IOS = 'Firefox iOs',
-  SAFARI_IOS = 'Safari iOs',
-  OPERA = 'Opera',
-  EDGE = 'Edge',
-  IE = 'Internet Explorer',
-  SAMSUNG_INTERNET = 'Samsung Internet'
+	CHROME = 'Chrome',
+	FIREFOX = 'Firefox',
+	SAFARI = 'Safari',
+	GOOGLE_SEARCH_APP_IOS = 'Google Search App iOs',
+	CHROME_IOS = 'Chrome iOs',
+	FIREFOX_IOS = 'Firefox iOs',
+	SAFARI_IOS = 'Safari iOs',
+	OPERA = 'Opera',
+	EDGE = 'Edge',
+	IE = 'Internet Explorer',
+	SAMSUNG_INTERNET = 'Samsung Internet'
 }
