@@ -315,11 +315,13 @@ export class PlatformService extends Service<PlatformState> {
 				state.deviceName = 'iPod';
 			}
 		} else if (state.operatingSystem === OperatingSystem.ANDROID) {
-			const match = state.userAgent.match(/Android (\d\.?){1,3}; ().* /g)[0];
+			const match = state.userAgent.match(
+				/Android (\d\.?){1,3}; (\w*(-\w*)?)/g
+			)[0];
 			if (isNil(match)) {
 				return;
 			}
-			state.deviceName = match.split(' ', 2)[1].replace(' ', '');
+			state.deviceName = match.split(' ', 3)[2];
 		}
 	}
 
