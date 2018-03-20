@@ -145,11 +145,11 @@ export class PlatformService extends Service<PlatformState> {
 		this._findDeviceName(state);
 
 		if (!isNil(state.browserVersion)) {
-			state.browserVersion = state.browserVersion.replace(/(-|_| |\/|,)/, '.');
+			state.browserVersion = state.browserVersion.replace(/(-|_| |\/|,)/g, '.');
 		}
 		if (!isNil(state.operatingSystemVersion)) {
 			state.operatingSystemVersion = state.operatingSystemVersion.replace(
-				/(-|_| |\/|,)/,
+				/(-|_| |\/|,)/g,
 				'.'
 			);
 		}
