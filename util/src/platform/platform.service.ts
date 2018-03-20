@@ -209,7 +209,7 @@ export class PlatformService extends Service<PlatformState> {
 
 	private _findOSVersion(state: PlatformState) {
 		if (state.operatingSystem === OperatingSystem.IOS) {
-			const match = state.userAgent.match(/(iPhone|CPU) OS (\d\_?){1,3}/g);
+			const match = state.userAgent.match(/(iPhone|CPU) OS (\d\_?){1,4}/g);
 			if (isNil(match)) {
 				return;
 			}
