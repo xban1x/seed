@@ -217,7 +217,7 @@ export class PlatformService extends Service<PlatformState> {
 			return;
 		}
 		if (state.operatingSystem === OperatingSystem.ANDROID) {
-			const match = state.userAgent.match(/Android (\d\.?){1,3}/g);
+			const match = state.userAgent.match(/Android (\d\.?)*/g);
 			if (isNil(match)) {
 				return;
 			}
@@ -225,7 +225,7 @@ export class PlatformService extends Service<PlatformState> {
 			return;
 		}
 		if (state.operatingSystem === OperatingSystem.WINDOWS) {
-			const match = state.userAgent.match(/Windows NT (\d*\_?){1,3}/g);
+			const match = state.userAgent.match(/Windows NT (\d*\_?)*/g);
 			if (isNil(match)) {
 				return;
 			}
@@ -233,7 +233,7 @@ export class PlatformService extends Service<PlatformState> {
 			return;
 		}
 		if (state.operatingSystem === OperatingSystem.MAC_OS) {
-			const match = state.userAgent.match(/Mac OS X (\d*\_?){1,3}/g);
+			const match = state.userAgent.match(/Mac OS X (\d*\_?)*/g);
 			if (isNil(match)) {
 				return;
 			}
