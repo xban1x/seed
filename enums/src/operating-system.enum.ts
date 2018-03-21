@@ -1,7 +1,7 @@
 export enum OperatingSystem {
   LINUX = 'Linux',
   WINDOWS = 'Windows',
-  MAC_OS = 'Mac OS',
+  MAC_OS = 'macOS',
   ANDROID = 'Android',
-  IOS = 'iOs'
+  IOS = 'iOS'
 }
