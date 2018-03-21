@@ -433,11 +433,11 @@ export class PlatformService extends Service<PlatformState> {
   }
 
   getReferrer(): string {
-    return this._document.referrer;
+    return this._document.referrer || '$direct';
   }
 
   getReferrerDomain(): string {
-    return this._extractDomain(this._document.referrer);
+    return this._extractDomain(this.getReferrer());
   }
 
   getUserAgent(): string {
