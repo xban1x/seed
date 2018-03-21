@@ -1,11 +1,11 @@
 // Libs
-import { State } from '@seed/interfaces';
 import {
+	Browser,
 	DeviceType,
 	OperatingSystem,
-	Browser,
 	RenderingMode
 } from '@seed/enums';
+import { State } from '@seed/interfaces';
 
 export class PlatformState extends State {
 	static readonly STORE_NAME = 'platform';

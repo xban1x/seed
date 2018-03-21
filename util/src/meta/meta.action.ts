@@ -1,6 +1,6 @@
-import { MetaState } from './meta.state';
 // NgRx
 import { Action } from '@ngrx/store';
+import { MetaState } from './meta.state';
 
 export enum MetaActions {
   SET_META = '[Meta] Set meta'

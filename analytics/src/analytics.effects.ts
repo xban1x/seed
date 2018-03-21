@@ -1,24 +1,24 @@
-import {
-	SendEventAction,
-	SendResponseAction,
-	AnalyticsActions,
-	RetryEventAction
-} from './analytics.action';
-// Libs
-import { Config } from '@seed/models';
+import { HttpClient } from '@angular/common/http';
 // Angular
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 // NgRx
 import { Actions, Effect } from '@ngrx/effects';
-// RxJS
-import { mergeMap } from 'rxjs/operators/mergeMap';
-import { catchError } from 'rxjs/operators/catchError';
-import { map } from 'rxjs/operators/map';
-import { retry } from 'rxjs/operators/retry';
-import { of } from 'rxjs/observable/of';
+// Libs
+import { Config } from '@seed/models';
 // Lodash
 import isNil from 'lodash/isNil';
+import { of } from 'rxjs/observable/of';
+import { catchError } from 'rxjs/operators/catchError';
+import { map } from 'rxjs/operators/map';
+// RxJS
+import { mergeMap } from 'rxjs/operators/mergeMap';
+import { retry } from 'rxjs/operators/retry';
+import {
+	AnalyticsActions,
+	RetryEventAction,
+	SendEventAction,
+	SendResponseAction
+} from './analytics.action';
 
 @Injectable()
 export class AnalyticsEffects {
@@ -31,7 +31,7 @@ export class AnalyticsEffects {
 		.pipe(
 			mergeMap(action =>
 				this._http
-					.post<boolean>(<any>this._config.analyticsUrl, action.payload)
+					.post<boolean>(this._config.analyticsUrl as any, action.payload)
 					.pipe(
 						retry(3),
 						catchError(() => of<boolean>(false)),

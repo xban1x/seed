@@ -1,20 +1,20 @@
-import { PlatformService } from '../platform/index';
-import { SetLayoutAction } from './layout.action';
-import { LayoutState } from './layout.state';
-// Libs
-import { Service } from '@seed/interfaces';
-// Angular
-import { Injectable, Inject, Renderer2, ElementRef } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
 import { ViewportRuler } from '@angular/cdk/scrolling';
+import { DOCUMENT } from '@angular/common';
+// Angular
+import { ElementRef, Inject, Injectable, Renderer2 } from '@angular/core';
 // NgRx
 import { Store } from '@ngrx/store';
+// Libs
+import { Service } from '@seed/interfaces';
+import isEqual from 'lodash/isEqual';
 // Lodash
 import isNil from 'lodash/isNil';
-import isEqual from 'lodash/isEqual';
 import isString from 'lodash/isString';
 // Validator
 import * as isHexColor from 'validator/lib/isHexColor';
+import { PlatformService } from '../platform/index';
+import { SetLayoutAction } from './layout.action';
+import { LayoutState } from './layout.state';
 
 @Injectable()
 export class LayoutService extends Service<LayoutState> {

@@ -1,25 +1,25 @@
+import { DOCUMENT } from '@angular/common';
+// Angular
+import { Inject, Injectable } from '@angular/core';
+import {
+	makeStateKey,
+	Meta,
+	MetaDefinition,
+	Title,
+	TransferState
+} from '@angular/platform-browser';
+// NgRx
+import { Store } from '@ngrx/store';
+import { Service } from '@seed/interfaces';
+// Libs
+import { Config } from '@seed/models';
+import has from 'lodash/has';
+import isEqual from 'lodash/isEqual';
+// Lodash
+import isNil from 'lodash/isNil';
 import { PlatformService } from '../platform/index';
 import { SetMetaAction } from './meta.action';
 import { MetaState } from './meta.state';
-// Libs
-import { Config } from '@seed/models';
-import { Service } from '@seed/interfaces';
-// Angular
-import { Injectable, Inject } from '@angular/core';
-import {
-	Title,
-	Meta,
-	MetaDefinition,
-	TransferState,
-	makeStateKey
-} from '@angular/platform-browser';
-import { DOCUMENT } from '@angular/common';
-// NgRx
-import { Store } from '@ngrx/store';
-// Lodash
-import isNil from 'lodash/isNil';
-import isEqual from 'lodash/isEqual';
-import has from 'lodash/has';
 
 const TRANSFER_STATE_KEY = makeStateKey<MetaState>('META_STATE');
 

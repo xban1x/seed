@@ -1,10 +1,10 @@
-import { PlatformService } from '../platform/index';
+// Angular
+import { Injectable } from '@angular/core';
+import { NavigationExtras, Router } from '@angular/router';
 // Libs
 import { ScrollBehavior } from '@seed/enums';
 import { Scroll } from '@seed/models';
-// Angular
-import { Injectable } from '@angular/core';
-import { Router, NavigationExtras } from '@angular/router';
+import { PlatformService } from '../platform/index';
 
 @Injectable()
 export class ScrollService {

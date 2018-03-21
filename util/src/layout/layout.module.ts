@@ -1,11 +1,11 @@
-import { LayoutState } from './layout.state';
-import { LayoutService } from './layout.service';
-import { layoutReducer } from './layout.reducer';
-// NgRx
-import { StoreModule } from '@ngrx/store';
+import { VIEWPORT_RULER_PROVIDER } from '@angular/cdk/scrolling';
 // Angular
 import { NgModule } from '@angular/core';
-import { VIEWPORT_RULER_PROVIDER } from '@angular/cdk/scrolling';
+// NgRx
+import { StoreModule } from '@ngrx/store';
+import { layoutReducer } from './layout.reducer';
+import { LayoutService } from './layout.service';
+import { LayoutState } from './layout.state';
 
 @NgModule({
   imports: [StoreModule.forFeature(LayoutState.STORE_NAME, layoutReducer)],

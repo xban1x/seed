@@ -1,15 +1,15 @@
-import { State } from './state.interface';
 // NgRx
 import { Store } from '@ngrx/store';
+// Lodash
+import isNil from 'lodash/isNil';
 // RxJS
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
-// Lodash
-import isNil from 'lodash/isNil';
+import { State } from './state.interface';
 
 export abstract class Service<T extends State> {
   stateChange: Observable<T>;
-  state: T = <T>{};
+  state: T = {} as T;
   private _subscription: Subscription;
 
   constructor(protected _store: Store<any>, private _storeName: string) {

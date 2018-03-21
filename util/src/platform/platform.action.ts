@@ -1,6 +1,6 @@
-import { PlatformState } from './platform.state';
 // NgRx
 import { Action } from '@ngrx/store';
+import { PlatformState } from './platform.state';
 
 export enum PlatformActions {
   SET_PLATFORM = '[Platform] Set platform'

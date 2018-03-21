@@ -1,7 +1,7 @@
-import { AnalyticsActionsType, AnalyticsActions } from './analytics.action';
-import { AnalyticsState } from './analytics.state';
 // Lodash
 import isNil from 'lodash/isNil';
+import { AnalyticsActions, AnalyticsActionsType } from './analytics.action';
+import { AnalyticsState } from './analytics.state';
 
 const DEFAULT_STATE = new AnalyticsState( { events: [], properties: [], propertiesVersions: [], responses: [] } );
 

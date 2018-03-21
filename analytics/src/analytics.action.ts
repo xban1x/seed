@@ -1,7 +1,7 @@
-import { Property } from './property.model';
-import { Event } from './event.model';
 // NgRx
 import { Action } from '@ngrx/store';
+import { Event } from './event.model';
+import { Property } from './property.model';
 
 export enum AnalyticsActions {
 	UPDATE_PROPERTY = '[Analytics] Update property',

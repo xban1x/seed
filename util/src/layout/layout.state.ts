@@ -1,9 +1,9 @@
 // Libs
-import { State } from '@seed/interfaces';
 import { OrientationType } from '@seed/enums';
+import { State } from '@seed/interfaces';
+import isNil from 'lodash/isNil';
 // Lodash
 import isNumber from 'lodash/isNumber';
-import isNil from 'lodash/isNil';
 
 export class LayoutState extends State {
 	static readonly STORE_NAME = 'layout';

@@ -1,9 +1,9 @@
-import { isBrowser } from '../functions/index';
 // Libs
 import { LogCode, LogSeverity } from '@seed/enums';
 import { Config } from '@seed/models';
 // Lodash
 import isNil from 'lodash/isNil';
+import { isBrowser } from '../functions/index';
 
 export function logDebug(code: LogCode, message?: string) {
 	_log(LogSeverity.DEBUG, code, message);

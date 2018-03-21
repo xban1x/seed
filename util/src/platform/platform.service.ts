@@ -1,27 +1,27 @@
-import { SetPlatformAction } from './platform.action';
-import { PlatformState } from './platform.state';
-// Libs
-import {
-	OperatingSystem,
-	DeviceType,
-	Browser,
-	RenderingMode,
-	NavigationType
-} from '@seed/enums';
-import { Service } from '@seed/interfaces';
-// Angular
-import { Injectable, Injector, Inject } from '@angular/core';
-import { DOCUMENT } from '@angular/common';
 import { Platform } from '@angular/cdk/platform';
-import { TransferState, makeStateKey } from '@angular/platform-browser';
-import { Router, NavigationEnd } from '@angular/router';
+import { DOCUMENT } from '@angular/common';
+// Angular
+import { Inject, Injectable, Injector } from '@angular/core';
+import { makeStateKey, TransferState } from '@angular/platform-browser';
+import { NavigationEnd, Router } from '@angular/router';
 // NgRx
 import { Store } from '@ngrx/store';
-// RxJS
-import { filter } from 'rxjs/operators/filter';
+// Libs
+import {
+	Browser,
+	DeviceType,
+	NavigationType,
+	OperatingSystem,
+	RenderingMode
+} from '@seed/enums';
+import { Service } from '@seed/interfaces';
+import isEqual from 'lodash/isEqual';
 // Lodash
 import isNil from 'lodash/isNil';
-import isEqual from 'lodash/isEqual';
+// RxJS
+import { filter } from 'rxjs/operators/filter';
+import { SetPlatformAction } from './platform.action';
+import { PlatformState } from './platform.state';
 
 const TRANSFER_STATE_KEY = makeStateKey<PlatformState>('PLATFORM_STATE');
 

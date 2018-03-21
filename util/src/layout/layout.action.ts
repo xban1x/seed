@@ -1,6 +1,6 @@
-import { LayoutState } from './layout.state';
 // NgRx
 import { Action } from '@ngrx/store';
+import { LayoutState } from './layout.state';
 
 export enum LayoutActions {
   SET_LAYOUT = '[Layout] Set layout'

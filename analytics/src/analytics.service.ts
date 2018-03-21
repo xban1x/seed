@@ -1,35 +1,35 @@
-import { AnalyticKey } from './key.enum';
-import { Event } from './event.model';
-import {
-	UpdatePropertyAction,
-	DeletePropertyAction,
-	SendEventAction,
-	RetryEventAction
-} from './analytics.action';
-import { Property } from './property.model';
-import { AnalyticsState } from './analytics.state';
-// Libs
-import { Service } from '@seed/interfaces';
-import {
-	PlatformService,
-	LayoutService,
-	PlatformState,
-	LayoutState
-} from '@seed/util';
-import { Config } from '@seed/models';
 // Angular
 import { Injectable } from '@angular/core';
 // NgRx
 import { Store } from '@ngrx/store';
-// RxJS
-import { Observable } from 'rxjs/Observable';
-import { map } from 'rxjs/operators/map';
-import { filter } from 'rxjs/operators/filter';
-import { first } from 'rxjs/operators/first';
+// Libs
+import { Service } from '@seed/interfaces';
+import { Config } from '@seed/models';
+import {
+	LayoutService,
+	LayoutState,
+	PlatformService,
+	PlatformState
+} from '@seed/util';
 // Lodash
 import isNil from 'lodash/isNil';
+// RxJS
+import { Observable } from 'rxjs/Observable';
+import { filter } from 'rxjs/operators/filter';
+import { first } from 'rxjs/operators/first';
+import { map } from 'rxjs/operators/map';
 // UUID
 import * as uuid from 'uuid/v4';
+import {
+	DeletePropertyAction,
+	RetryEventAction,
+	SendEventAction,
+	UpdatePropertyAction
+} from './analytics.action';
+import { AnalyticsState } from './analytics.state';
+import { Event } from './event.model';
+import { AnalyticKey } from './key.enum';
+import { Property } from './property.model';
 
 @Injectable()
 export class AnalyticsService<
@@ -103,7 +103,7 @@ export class AnalyticsService<
 		this._store.dispatch(new UpdatePropertyAction({ property, override }));
 	}
 
-	updateProperties(override = false, ...properties: Property<T>[]): void {
+	updateProperties(override = false, ...properties: Array<Property<T>>): void {
 		properties.forEach(val => this.updateProperty(val, override));
 	}
 
@@ -155,7 +155,7 @@ export class AnalyticsService<
 	}
 
 	private _onConfig(config: Config): void {
-		const properties: Property<T>[] = [
+		const properties: Array<Property<T>> = [
 			{
 				name: AnalyticKey.APP_NAME,
 				value: config.app.name
@@ -189,7 +189,7 @@ export class AnalyticsService<
 	}
 
 	private _onPlatformChange(platform: PlatformState): void {
-		const properties: Property<T>[] = [
+		const properties: Array<Property<T>> = [
 			{
 				name: AnalyticKey.BROWSER_ONLINE,
 				value: platform.online
@@ -259,7 +259,7 @@ export class AnalyticsService<
 	}
 
 	private _onLayoutChange(layout: LayoutState): void {
-		const properties: Property<T>[] = [
+		const properties: Array<Property<T>> = [
 			{
 				name: AnalyticKey.BROWSER_FULLSCREEN,
 				value: layout.isFullScreen

@@ -1,7 +1,7 @@
 // Libs
-import { EnvironmentType } from '@seed/enums';
 // Angular
 import { MetaDefinition } from '@angular/platform-browser';
+import { EnvironmentType } from '@seed/enums';
 
 export class Config {
 	app: {

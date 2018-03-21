@@ -3,5 +3,5 @@ import { Property } from './property.model';
 
 export class Event<T extends any | AnalyticKey = AnalyticKey> {
   name: string;
-  properties: Property<T>[];
+  properties: Array<Property<T>>;
 }

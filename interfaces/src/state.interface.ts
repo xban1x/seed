@@ -10,11 +10,11 @@ export abstract class State {
     for ( const key of keys ) {
       const val = initial[ key ];
       if ( val instanceof Array ) {
-        ( <any> this )[ key ] = [ ...val ];
+        ( this as any )[ key ] = [ ...val ];
       } else if ( val instanceof Object ) {
-        ( <any> this )[ key ] = { ...val };
+        ( this as any )[ key ] = { ...val };
       } else {
-        ( <any> this )[ key ] = val;
+        ( this as any )[ key ] = val;
       }
     }
   }
