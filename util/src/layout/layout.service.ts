@@ -60,7 +60,6 @@ export class LayoutService extends Service<LayoutState> {
 		state.isFullScreen = this.isFullScreen();
 
 		this._setLayoutState(state);
-		this.state = state;
 
 		this._viewport.change(100).subscribe(() => this._onResize());
 
@@ -138,7 +137,6 @@ export class LayoutService extends Service<LayoutState> {
 		const state = new LayoutState(this.state);
 		state.isFullScreen = this.isFullScreen();
 		this._setLayoutState(state);
-		this.state = state;
 	}
 
 	private _fullScreenPolyfill(): boolean {
@@ -166,7 +164,6 @@ export class LayoutService extends Service<LayoutState> {
 
 	private _calculateState(): LayoutState {
 		const state = new LayoutState(this.state);
-
 		state.viewport = this._viewport.getViewportSize();
 		return state;
 	}
@@ -174,6 +171,7 @@ export class LayoutService extends Service<LayoutState> {
 	private _setLayoutState(state: LayoutState): void {
 		if (!isEqual(this.state, state)) {
 			this._store.dispatch(new SetLayoutAction(state));
+			this.state = state;
 		}
 	}
 }
