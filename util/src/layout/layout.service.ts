@@ -1,7 +1,7 @@
 import { ViewportRuler } from '@angular/cdk/scrolling';
 import { DOCUMENT } from '@angular/common';
 // Angular
-import { ElementRef, Inject, Injectable, Renderer2 } from '@angular/core';
+import { ElementRef, Inject, Injectable, Renderer2,ApplicationRef } from '@angular/core';
 // NgRx
 import { Store } from '@ngrx/store';
 // Libs
@@ -15,6 +15,8 @@ import * as isHexColor from 'validator/lib/isHexColor';
 import { PlatformService } from '../platform/index';
 import { SetLayoutAction } from './layout.action';
 import { LayoutState } from './layout.state';
+import {filter} from 'rxjs/operators/filter';
+import {first} from 'rxjs/operators/first';
 
 @Injectable()
 export class LayoutService extends Service<LayoutState> {
@@ -27,6 +29,7 @@ export class LayoutService extends Service<LayoutState> {
 
 	constructor(
 		protected _store: Store<any>,
+		private _appRef: ApplicationRef,
 		private _platform: PlatformService,
 		private _viewport: ViewportRuler,
 		@Inject(DOCUMENT) private _document: Document
@@ -64,7 +67,13 @@ export class LayoutService extends Service<LayoutState> {
 		this._viewport.change(100).subscribe(() => this._onResize());
 
 		if (this._platform.isMobile()) {
-			setInterval(() => this._onResize(), 500);
+			this._appRef.isStable.
+			pipe(
+				filter(res => !!res),
+				first()
+			).subscribe((res) => {
+				setInterval(() => this._onResize(), 500);
+			});
 		}
 		return;
 	}
