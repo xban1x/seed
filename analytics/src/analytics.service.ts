@@ -44,7 +44,7 @@ export class AnalyticsService<
 		super(_store, AnalyticsState.STORE_NAME);
 		this.subscribe();
 		this._initUser();
-		this._unsentEvents();
+		// this._unsentEvents();
 		this._onConfig(this._config);
 		this._platform.stateChange.subscribe(state =>
 			this._onPlatformChange(state)
