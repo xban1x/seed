@@ -1,9 +1,21 @@
 {
-	"compileOnSave": false,
-	"compilerOptions": {
-		"baseUrl": ".",
-		"paths": {
-			"@seed/*": ["*"]
-		}
-	}
+  "compileOnSave": false,
+  "compilerOptions": {
+    "sourceMap": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "removeComments": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "target": "es5",
+    "module": "es2015",
+    "typeRoots": ["node_modules/@types", "./typings"],
+    "lib": ["es2017", "dom"],
+    "baseUrl": ".",
+    "paths": {
+      "@seed/*": ["seed/*"],
+      "lodash/*": ["node_modules/lodash-es/*"]
+    }
+  }
 }
