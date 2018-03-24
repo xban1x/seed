@@ -1,0 +1,23 @@
+@import '~normalize.css/normalize.css';
+
+html,body {
+  margin: 0;
+}
+
+html {
+  font-size: 1em;
+}
+
+ul {
+  padding: 0;
+  list-style: none;
+}
+
+a, button {
+  cursor: hand;
+  user-select: none;
+}
+
+a, button {
+  cursor: pointer;
+}

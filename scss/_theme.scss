@@ -1,0 +1,14 @@
+@import '~@angular/material/theming';
+@import 'mixins';
+@import 'typography';
+
+$default-primary: mat-palette($mat-indigo);
+$default-accent: mat-palette($mat-pink, A200, A100, A400);
+$default-warn: mat-palette($mat-red);
+$default-theme: mat-light-theme(
+	$default-primary,
+	$default-accent,
+	$default-warn
+);
+
+@include theme($default-theme,$typography);

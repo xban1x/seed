@@ -1,0 +1,89 @@
+@import '~@angular/material/theming';
+
+@mixin theme($theme, $typograhy) {
+	@if map-has-key($typograhy,mobile) {
+		@include mat-core(map-get($typograhy,mobile));
+	}
+
+	@include angular-material-theme($theme);
+
+	@if map-has-key($typograhy,mobile) {
+		@include typography-rules(map-get($typograhy,mobile));
+	}
+
+	@if map-has-key($typograhy,tablet) {
+		@media screen and (min-width: 600px) and (max-width: 959px) {
+			@include typography-rules(map-get($typograhy,tablet));
+		}
+	}
+
+	@if map-has-key($typograhy,laptop) {
+		@media screen and (min-width: 960px) and (max-width: 1279px) {
+			@include typography-rules(map-get($typograhy,laptop));
+		}
+	}
+
+	@if map-has-key($typograhy,desktop) {
+		@media screen and (min-width: 1280px) and (max-width: 1919px) {
+			@include typography-rules(map-get($typograhy,desktop));
+		}
+	}
+
+	@if map-has-key($typograhy,wide-screen) {
+		@media screen and (min-width: 1920px) {
+			@include typography-rules(map-get($typograhy,wide-screen));
+		}
+	}
+}
+
+@mixin typography-rules($typography) {
+	body {
+		@include mat-typography-level-to-styles($typography,body-1);
+	}
+
+	h1 {
+		@include mat-typography-level-to-styles($typography,headline);
+	}
+
+	h2 {
+		@include mat-typography-level-to-styles($typography,title);
+	}
+
+	h3 {
+		@include mat-typography-level-to-styles($typography,subheading-2);
+	}
+
+	h4 {
+		@include mat-typography-level-to-styles($typography,subheading-1);
+	}
+
+	h5 {
+		@include mat-typography-level-to-styles($typography,body-2);
+	}
+
+	h6 {
+		@include mat-typography-level-to-styles($typography,caption);
+	}
+
+	a,
+	p {
+		@include mat-typography-level-to-styles($typography,body-1);
+	}
+	a > b,
+	p > b {
+		@include mat-typography-level-to-styles($typography,body-2);
+	}
+
+	small {
+		@include mat-typography-level-to-styles($typography,caption);
+	}
+
+	input {
+		@include mat-typography-level-to-styles($typography,input);
+	}
+
+	button {
+		@include mat-typography-level-to-styles($typography,button);
+		text-transform: uppercase;
+	}
+}

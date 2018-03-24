@@ -1,0 +1,82 @@
+@import '~@angular/material/theming';
+
+$font: '-apple-system, BlinkMacSystemFont, "SegoeUI","Roboto","Oxygen","Ubuntu","Cantarell","Fira Sans","Droid Sans","Helvetica Neue",sans-serif';
+
+$typography: (
+	mobile: mat-typography-config($font-family: $font, $headline: mat-typography-level(2.074rem, 1.2, inherit), $title:
+				mat-typography-level(
+					1.728rem,
+					1.2,
+					inherit
+				), $subheading-2: mat-typography-level(1.44rem, 1.2, inherit), $subheading-1:
+				mat-typography-level(
+					1.2rem,
+					1.2,
+					inherit
+				), $body-1: mat-typography-level(1rem, 1.45, inherit), $body-2: mat-typography-level(1rem, 1.45, 500), $caption:
+				mat-typography-level(
+					0.833em,
+					1.45,
+					inherit
+				), $button: mat-typography-level(1rem, 1.45, inherit), $input: mat-typography-level(1rem, 1.45, inherit)),
+	table:mat-typography-config(
+			$font-family: $font,
+			$headline: mat-typography-level(2.441rem, 1.2, inherit),
+			$title: mat-typography-level(1.953rem, 1.2, inherit),
+			$subheading-2: mat-typography-level(1.563rem, 1.2, inherit),
+			$subheading-1: mat-typography-level(1.25rem, 1.2, inherit),
+			$body-1: mat-typography-level(1rem, 1.45, inherit),
+			$body-2: mat-typography-level(1rem, 1.45, 500),
+			$caption: mat-typography-level(0.8em, 1.45, inherit),
+			$button: mat-typography-level(1rem, 1.45, inherit),
+			$input: mat-typography-level(1rem, 1.45, inherit)
+		),
+	laptop: mat-typography-config($font-family: $font, $headline: mat-typography-level(3.157rem, 1.2, inherit), $title:
+				mat-typography-level(
+					2.369rem,
+					1.2,
+					inherit
+				), $subheading-2: mat-typography-level(1.777rem, 1.2, inherit), $subheading-1:
+				mat-typography-level(
+					1.333rem,
+					1.2,
+					inherit
+				), $body-1: mat-typography-level(1rem, 1.45, inherit), $body-2: mat-typography-level(1rem, 1.45, 500), $caption:
+				mat-typography-level(
+					0.75em,
+					1.45,
+					inherit
+				), $button: mat-typography-level(1rem, 1.45, inherit), $input: mat-typography-level(1rem, 1.45, inherit)),
+	desktop: mat-typography-config($font-family: $font, $headline: mat-typography-level(3.998rem, 1.2, inherit), $title:
+				mat-typography-level(
+					2.827rem,
+					1.2,
+					inherit
+				), $subheading-2: mat-typography-level(1.999rem, 1.2, inherit), $subheading-1:
+				mat-typography-level(
+					1.414rem,
+					1.2,
+					inherit
+				), $body-1: mat-typography-level(1rem, 1.45, inherit), $body-2: mat-typography-level(1rem, 1.45, 500), $caption:
+				mat-typography-level(
+					0.707em,
+					1.45,
+					inherit
+				), $button: mat-typography-level(1rem, 1.45, inherit), $input: mat-typography-level(1rem, 1.45, inherit)),
+	wide-screen: mat-typography-config($font-family: $font, $headline: mat-typography-level(5.063rem, 1.2, inherit), $title:
+				mat-typography-level(
+					3.375rem,
+					1.2,
+					inherit
+				), $subheading-2: mat-typography-level(2.25rem, 1.2, inherit), $subheading-1:
+				mat-typography-level(
+					1.5rem,
+					1.2,
+					inherit
+				), $body-1: mat-typography-level(1rem, 1.45, inherit), $body-2: mat-typography-level(1rem, 1.45, 500), $caption:
+				mat-typography-level(
+					0.667em,
+					1.45,
+					inherit
+				), $button: mat-typography-level(1rem, 1.45, inherit), $input: mat-typography-level(1rem, 1.45, inherit))
+);
