@@ -55,7 +55,7 @@ export class AnalyticsService<T extends any | AnalyticKey = AnalyticKey> extends
         name: AnalyticKey.SESSION_ID,
         value: uuid()
       },
-      false
+      override
     );
   }
 
