@@ -1,7 +1,7 @@
 import { Platform } from '@angular/cdk/platform';
 import { DOCUMENT } from '@angular/common';
 // Angular
-import { Inject, Injectable, Injector, InjectionToken } from '@angular/core';
+import { Inject, Injectable, InjectionToken, Optional } from '@angular/core';
 import { makeStateKey, TransferState } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 // NgRx
@@ -17,6 +17,8 @@ import { filter } from 'rxjs/operators/filter';
 import { SetPlatformAction } from './platform.action';
 import { PlatformState } from './platform.state';
 
+export const HEADERS = new InjectionToken<string>('Headers');
+
 const TRANSFER_STATE_KEY = makeStateKey<PlatformState>('PLATFORM_STATE');
 
 @Injectable()
@@ -27,7 +29,9 @@ export class PlatformService extends Service<PlatformState> {
     private readonly _router: Router,
     @Inject(DOCUMENT) private readonly _document: Document,
     private readonly _transfer: TransferState,
-    private readonly injector: Injector
+    @Optional()
+    @Inject(HEADERS)
+    private readonly _headers: string
   ) {
     super(_store, PlatformState.STORE_NAME);
     this._init();
@@ -95,8 +99,7 @@ export class PlatformService extends Service<PlatformState> {
 
       state.renderingMode = RenderingMode.BROWSER;
     } else {
-      const headers = this.injector.get<string>(new InjectionToken<string>('Headers'));
-      state = this._initState(headers);
+      state = this._initState(this._headers);
     }
     this._setPlatformState(state);
     this.state = state;
