@@ -106,7 +106,7 @@ export class PlatformService extends Service<PlatformState> {
   }
 
   private _initState(headers?: any): PlatformState {
-    let userAgent: string | undefined;
+    let userAgent: string | null = null;
 
     if (this._platform.isBrowser) {
       userAgent = navigator.userAgent;
@@ -116,7 +116,7 @@ export class PlatformService extends Service<PlatformState> {
 
     const state = new PlatformState(this.state);
 
-    if (isNil(userAgent)) {
+    if (userAgent === null) {
       return state;
     }
 

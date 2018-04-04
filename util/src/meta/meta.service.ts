@@ -56,7 +56,7 @@ export class MetaService extends Service<MetaState> {
         obj[attr.nodeName] = attr.nodeValue;
         return obj;
       });
-      const attributes: MetaDefinition | undefined = attributeMap.reduce((sum, n) => {
+      const attributes: MetaDefinition | null = attributeMap.reduce((sum, n) => {
         return { ...sum, ...n };
       });
       if (!isNil(attributes)) {
@@ -118,7 +118,7 @@ export class MetaService extends Service<MetaState> {
   updateTag(tag: MetaDefinition, create = false): HTMLMetaElement | null {
     if (this._findWithMeta(tag)) {
       this._update(tag);
-      return this._meta.updateTag(tag, undefined);
+      return this._meta.updateTag(tag, null);
     } else if (create) {
       return this._meta.addTag(tag);
     }

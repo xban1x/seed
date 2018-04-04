@@ -3,7 +3,7 @@ import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material/dial
 
 @Injectable()
 export class DialogService {
-  private _ref: MatDialogRef<any>;
+  private _ref: MatDialogRef<any> | null = null;
 
   constructor(private _dialog: MatDialog) {}
 
@@ -12,7 +12,7 @@ export class DialogService {
     force = true,
     opts: MatDialogConfig = { hasBackdrop: true, disableClose: true }
   ): MatDialogRef<T> | boolean {
-    if (!force && this._ref !== undefined) {
+    if (!force && this._ref !== null) {
       return false;
     }
     if (this._ref) {
@@ -23,7 +23,7 @@ export class DialogService {
   }
 
   close(reason: any = -2): void {
-    if (this._ref === undefined) {
+    if (this._ref === null) {
       return;
     }
     this._ref.close(reason);
