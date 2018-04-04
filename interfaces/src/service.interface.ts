@@ -12,7 +12,8 @@ export abstract class Service<T extends State> {
   state: T = {} as T;
   private _subscription: Subscription;
 
-  constructor(protected _store: Store<any>, private _storeName: string) {
+  constructor(protected readonly _store: Store<any>, private readonly _storeName: string) {
+    console.log('Service Init: ' + _storeName);
     this._onInit();
   }
 
