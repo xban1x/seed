@@ -1,6 +1,5 @@
 // Libs
 import { LogCode, LogSeverity } from '@seed/enums';
-import { Config } from '@seed/models';
 // Lodash
 import isNil from 'lodash/isNil';
 import { isBrowser } from '../functions/index';
