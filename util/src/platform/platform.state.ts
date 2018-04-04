@@ -1,86 +1,86 @@
 // Libs
 import {
-	Browser,
-	DeviceType,
-	OperatingSystem,
-	RenderingMode
+  Browser,
+  DeviceType,
+  OperatingSystem,
+  RenderingMode
 } from '@seed/enums';
 import { State } from '@seed/interfaces';
 
 export class PlatformState extends State {
-	static readonly STORE_NAME = 'platform';
+  static readonly STORE_NAME = 'platform';
 
-	/**
-	 * Rendering Mode
-	 */
-	renderingMode: RenderingMode;
+  /**
+   * Rendering Mode
+   */
+  renderingMode: RenderingMode;
 
-	/** Online */
-	online: boolean;
+  /** Online */
+  online: boolean;
 
-	/**
-	 * Navigation Type
-	 */
-	navigationType: string;
+  /**
+   * Navigation Type
+   */
+  navigationType: string;
 
-	/**
-	 * Device Name
-	 */
-	deviceName: string | 'iPhone' | 'iPod' | 'iPad';
+  /**
+   * Device Name
+   */
+  deviceName: string | 'iPhone' | 'iPod' | 'iPad';
 
-	/**
-	 * Device Type
-	 */
-	deviceType: DeviceType;
+  /**
+   * Device Type
+   */
+  deviceType: DeviceType;
 
-	/**
-	 * Operating System
-	 */
-	operatingSystem: OperatingSystem;
+  /**
+   * Operating System
+   */
+  operatingSystem: OperatingSystem;
 
-	/**
-	 * Browser
-	 */
-	browser: Browser;
+  /**
+   * Browser
+   */
+  browser: Browser;
 
-	// ### VERSIONS ###
+  // ### VERSIONS ###
 
-	/**
-	 * OS Version
-	 */
-	operatingSystemVersion: string;
+  /**
+   * OS Version
+   */
+  operatingSystemVersion: string;
 
-	/**
-	 * Browser Version
-	 */
-	browserVersion: string;
+  /**
+   * Browser Version
+   */
+  browserVersion: string;
 
-	// ### Referrers ###
+  // ### Referrers ###
 
-	/**
-	 * Initial Referrer
-	 */
-	initialReferrer: string;
+  /**
+   * Initial Referrer
+   */
+  initialReferrer: string;
 
-	/**
-	 * Initial Referrer Domain
-	 */
-	initialReferrerDomain: string;
+  /**
+   * Initial Referrer Domain
+   */
+  initialReferrerDomain: string;
 
-	// ### Browser ###
+  // ### Browser ###
 
-	/**
-	 * User Agent
-	 */
-	userAgent: string;
+  /**
+   * User Agent
+   */
+  userAgent: string;
 
-	/**
-	 * Connection Type
-	 */
-	connectionType: string;
+  /**
+   * Connection Type
+   */
+  connectionType: string;
 
-	/**
-	 * Connection Effective Type
-	 */
-	connectionEffectiveType: string;
+  /**
+   * Connection Effective Type
+   */
+  connectionEffectiveType: string;
 }

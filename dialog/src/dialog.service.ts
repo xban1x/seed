@@ -1,5 +1,9 @@
 import { Injectable, TemplateRef } from '@angular/core';
-import { MatDialog, MatDialogRef, MatDialogConfig } from '@angular/material/dialog';
+import {
+  MatDialog,
+  MatDialogRef,
+  MatDialogConfig
+} from '@angular/material/dialog';
 
 @Injectable()
 export class DialogService {
@@ -11,15 +15,14 @@ export class DialogService {
     ref: TemplateRef<T>,
     force = true,
     opts: MatDialogConfig = { hasBackdrop: true, disableClose: true }
-  ): MatDialogRef<T> | boolean {
+  ): MatDialogRef<T> | null {
     if (!force && this._ref !== null) {
-      return false;
+      return null;
     }
     if (this._ref) {
       this._ref.close(-1);
     }
-    this._ref = this._dialog.open(ref, opts);
-    return;
+    return (this._ref = this._dialog.open(ref, opts));
   }
 
   close(reason: any = -2): void {
