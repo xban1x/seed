@@ -108,7 +108,7 @@ export class PlatformService extends Service<PlatformState> {
 
     if (this._platform.isBrowser) {
       userAgent = navigator.userAgent;
-    } else if (headers !== undefined) {
+    } else if (headers !== null) {
       userAgent = headers['user-agent'];
     }
 
