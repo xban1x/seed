@@ -10,8 +10,6 @@ import { Store } from '@ngrx/store';
 import { Browser, DeviceType, NavigationType, OperatingSystem, RenderingMode } from '@seed/enums';
 import { Service } from '@seed/interfaces';
 import isEqual from 'lodash/isEqual';
-// Lodash
-import isNil from 'lodash/isNil';
 // RxJS
 import { filter } from 'rxjs/operators/filter';
 import { SetPlatformAction } from './platform.action';
@@ -53,18 +51,18 @@ export class PlatformService extends Service<PlatformState> {
       }
 
       // Online handling
-      if (!isNil(navigator.onLine)) {
+      if (navigator.onLine !== undefined) {
         state.online = navigator.onLine;
         window.addEventListener('online', () => this._handleOnlineOffline());
         window.addEventListener('offline', () => this._handleOnlineOffline());
       }
 
       // Navigation Type handling
-      if (!isNil(performance) && !isNil(performance.navigation)) {
+      if (performance !== undefined && performance.navigation !== undefined) {
         state.navigationType = NavigationType.toString(performance.navigation.type);
 
         this._router.events.pipe(filter((event: any) => event instanceof NavigationEnd)).subscribe(() => {
-          if (isNil(performance) || isNil(performance.navigation)) {
+          if (perfromance === undefined || performance.navigation === undefined) {
             return;
           }
           const newState = new PlatformState(this.state);
@@ -77,12 +75,12 @@ export class PlatformService extends Service<PlatformState> {
       }
 
       // Connection Type handling
-      if (!isNil(navigator.connection)) {
+      if (navigator.connection !== undefined) {
         state.connectionType = navigator.connection.type;
         state.connectionEffectiveType = navigator.connection.effectiveType;
 
         navigator.connection.addEventListener('change', () => {
-          if (isNil(navigator.connection)) {
+          if (navigator.connection === undefined) {
             return;
           }
           const newState = new PlatformState(this.state);
@@ -110,7 +108,7 @@ export class PlatformService extends Service<PlatformState> {
 
     if (this._platform.isBrowser) {
       userAgent = navigator.userAgent;
-    } else if (!isNil(headers)) {
+    } else if (headers !== undefined) {
       userAgent = headers['user-agent'];
     }
 
@@ -133,10 +131,10 @@ export class PlatformService extends Service<PlatformState> {
     this._findBrowserVersion(state);
     this._findDeviceName(state);
 
-    if (!isNil(state.browserVersion)) {
+    if (state.browserVersion !== undefined) {
       state.browserVersion = state.browserVersion.replace(/(-|_| |\/|,)/g, '.');
     }
-    if (!isNil(state.operatingSystemVersion)) {
+    if (state.operatingSystemVersion !== undefined) {
       state.operatingSystemVersion = state.operatingSystemVersion.replace(/(-|_| |\/|,)/g, '.');
     }
 
@@ -144,7 +142,7 @@ export class PlatformService extends Service<PlatformState> {
   }
 
   private _extractDomain(url: string): string {
-    if (isNil(url) || url === '' || url === '$direct') {
+    if (url === '' || url === '$direct') {
       return url;
     }
     return new URL(url).hostname;
@@ -196,7 +194,7 @@ export class PlatformService extends Service<PlatformState> {
   private _findOSVersion(state: PlatformState) {
     if (state.operatingSystem === OperatingSystem.IOS) {
       const match = state.userAgent.match(/(iPhone|CPU) OS (\d\_?)*/g);
-      if (isNil(match)) {
+      if (match === undefined) {
         return;
       }
       state.operatingSystemVersion = match[0].split(' ', 3)[2];
@@ -204,7 +202,7 @@ export class PlatformService extends Service<PlatformState> {
     }
     if (state.operatingSystem === OperatingSystem.ANDROID) {
       const match = state.userAgent.match(/Android (\d\.?)*/g);
-      if (isNil(match)) {
+      if (match === undefined) {
         return;
       }
       state.operatingSystemVersion = match[0].split(' ', 2)[1];
@@ -212,7 +210,7 @@ export class PlatformService extends Service<PlatformState> {
     }
     if (state.operatingSystem === OperatingSystem.WINDOWS) {
       const match = state.userAgent.match(/Windows NT (\d*\_?)*/g);
-      if (isNil(match)) {
+      if (match === undefined) {
         return;
       }
       state.operatingSystemVersion = match[0].split(' ', 3)[2];
@@ -220,7 +218,7 @@ export class PlatformService extends Service<PlatformState> {
     }
     if (state.operatingSystem === OperatingSystem.MAC_OS) {
       const match = state.userAgent.match(/Mac OS X (\d*\_?)*/g);
-      if (isNil(match)) {
+      if (match === undefined) {
         return;
       }
       state.operatingSystemVersion = match[0].split(' ', 4)[3];
@@ -231,7 +229,7 @@ export class PlatformService extends Service<PlatformState> {
   private _findBrowserVersion(state: PlatformState) {
     if (state.browser === Browser.SAFARI || state.browser === Browser.SAFARI_IOS) {
       const match = state.userAgent.match(/Version\/(\d*\.?)*/g);
-      if (isNil(match)) {
+      if (match === undefined) {
         return;
       }
       state.browserVersion = match[0].split('/', 2)[1];
@@ -239,7 +237,7 @@ export class PlatformService extends Service<PlatformState> {
     }
     if (state.browser === Browser.CHROME || state.browser === Browser.CHROME_IOS) {
       const match = state.userAgent.match(/(CriOS|Chrome)\/(\d*\.?)*/g);
-      if (isNil(match)) {
+      if (match === undefined) {
         return;
       }
       state.browserVersion = match[0].split('/', 2)[1];
@@ -247,7 +245,7 @@ export class PlatformService extends Service<PlatformState> {
     }
     if (state.browser === Browser.FIREFOX || state.browser === Browser.FIREFOX_IOS) {
       const match = state.userAgent.match(/(FxiOS|Firefox)\/(\d*\.?)*/g);
-      if (isNil(match)) {
+      if (match === undefined) {
         return;
       }
       state.browserVersion = match[0].split('/', 2)[1];
@@ -255,7 +253,7 @@ export class PlatformService extends Service<PlatformState> {
     }
     if (state.browser === Browser.SAMSUNG_INTERNET) {
       const match = state.userAgent.match(/SamsungBrowser\/\d\.\d/g);
-      if (isNil(match)) {
+      if (match === undefined) {
         return;
       }
       state.browserVersion = match[0].split('/', 2)[1];
@@ -263,7 +261,7 @@ export class PlatformService extends Service<PlatformState> {
     }
     if (state.browser === Browser.EDGE) {
       const match = state.userAgent.match(/Edge\/(\d*\.?)*/g);
-      if (isNil(match)) {
+      if (match === undefined) {
         return;
       }
       state.browserVersion = match[0].split('/', 2)[1];
@@ -271,7 +269,7 @@ export class PlatformService extends Service<PlatformState> {
     }
     if (state.browser === Browser.GOOGLE_SEARCH_APP_IOS) {
       const match = state.userAgent.match(/GSA\/(\d*\.?)*/g);
-      if (isNil(match)) {
+      if (match === undefined) {
         return;
       }
       state.browserVersion = match[0].split('/', 2)[1];
@@ -279,7 +277,7 @@ export class PlatformService extends Service<PlatformState> {
     }
     if (state.browser === Browser.IE) {
       const match = state.userAgent.match(/rv:\/(\d*\.?)*/g);
-      if (isNil(match)) {
+      if (match === undefined) {
         return;
       }
       state.browserVersion = match[0].split('/', 2)[1];
@@ -303,7 +301,7 @@ export class PlatformService extends Service<PlatformState> {
       }
     } else if (state.operatingSystem === OperatingSystem.ANDROID) {
       const match = state.userAgent.match(/Android (\d\.?){1,3}; (\w*(-\w*)? )*/g)[0];
-      if (isNil(match)) {
+      if (match === undefined) {
         return;
       }
       const splits = match.trim().split(' ');
@@ -312,7 +310,7 @@ export class PlatformService extends Service<PlatformState> {
   }
 
   private _handleOnlineOffline(): void {
-    if (isNil(navigator.onLine)) {
+    if (navigator.onLine === undefined) {
       return;
     }
     const state = new PlatformState(this.state);
@@ -350,14 +348,14 @@ export class PlatformService extends Service<PlatformState> {
   }
 
   isOSVersion(target: number): boolean {
-    if (isNil(this.state.operatingSystemVersion)) {
+    if (this.state.operatingSystemVersion === undefined) {
       return false;
     }
     return this.state.operatingSystemVersion.startsWith('' + target);
   }
 
   isBrowserVersion(target: number): boolean {
-    if (isNil(this.state.browserVersion)) {
+    if (this.state.browserVersion === undefined) {
       return false;
     }
     return this.state.browserVersion.startsWith('' + target);

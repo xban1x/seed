@@ -1,6 +1,5 @@
 import localForage from 'localforage';
 import memoryStorageDriver from 'localforage-memoryStorageDriver';
-import isNil from 'lodash/isNil';
 
 localForage.defineDriver(memoryStorageDriver);
 
@@ -110,7 +109,7 @@ export const syncStateUpdate = (
   storageKeySerializer: (key: string) => string,
   removeOnUndefined: boolean
 ) => {
-  if (isNil(state)) {
+  if (state === undefined) {
     return;
   }
   keys.forEach(async key => {

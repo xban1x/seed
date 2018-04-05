@@ -10,7 +10,6 @@ import { Config } from '@seed/models';
 import has from 'lodash/has';
 import isEqual from 'lodash/isEqual';
 // Lodash
-import isNil from 'lodash/isNil';
 import { PlatformService } from '../platform/index';
 import { SetMetaAction } from './meta.action';
 import { MetaState } from './meta.state';
@@ -41,7 +40,7 @@ export class MetaService extends Service<MetaState> {
     }
     this._setMetaState(state);
     this.state = state;
-    if (!isNil(this._config.staticMetadata)) {
+    if (this._config.staticMetadata !== undefined) {
       for (const tag of this._config.staticMetadata) {
         this.updateTag(tag, true);
       }
@@ -59,7 +58,7 @@ export class MetaService extends Service<MetaState> {
       const attributes: MetaDefinition | null = attributeMap.reduce((sum, n) => {
         return { ...sum, ...n };
       });
-      if (!isNil(attributes)) {
+      if (attributes !== undefined) {
         state.meta.push(attributes);
       }
     }
@@ -92,7 +91,7 @@ export class MetaService extends Service<MetaState> {
     const res = [];
     for (const tag of tags) {
       const meta = this.addTag(tag, forceCreation);
-      if (!isNil(meta)) {
+      if (meta !== null) {
         res.push(meta);
       }
     }
@@ -157,9 +156,6 @@ export class MetaService extends Service<MetaState> {
   }
 
   private _findIndexWithMeta(tag: MetaDefinition): number {
-    if (isNil(tag)) {
-      return -1;
-    }
     for (const key of Object.keys(tag)) {
       const index = this.state.meta.findIndex(val => has(val, key) && val[key] === tag[key]);
       if (index > -1) {
@@ -170,9 +166,6 @@ export class MetaService extends Service<MetaState> {
   }
 
   private _add(tag: MetaDefinition) {
-    if (isNil(tag)) {
-      return;
-    }
     const index = this._findIndexWithMeta(tag);
     const state = new MetaState(this.state);
     if (index > -1) {
@@ -185,9 +178,6 @@ export class MetaService extends Service<MetaState> {
   }
 
   private _update(tag: MetaDefinition) {
-    if (isNil(tag)) {
-      return;
-    }
     const index = this._findIndexWithMeta(tag);
     const state = new MetaState(this.state);
     state.meta[index] = tag;
@@ -196,9 +186,6 @@ export class MetaService extends Service<MetaState> {
   }
 
   private _remove(tag: MetaDefinition) {
-    if (isNil(tag)) {
-      return;
-    }
     const index = this._findIndexWithMeta(tag);
     const state = new MetaState(this.state);
     state.meta.splice(index, 1);

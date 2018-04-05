@@ -4,15 +4,13 @@ import { OGType } from './enums/index';
 import { Injectable } from '@angular/core';
 // Libs
 import { MetaService } from '@seed/util';
-// Lodash
-import isNil from 'lodash/isNil';
 
 @Injectable()
 export class OpenGraphService {
   constructor(private _meta: MetaService) {}
 
   setTitle(title: string, titleBar?: string): void {
-    if (isNil(title) || title === '') {
+    if (title === '') {
       return;
     }
     this._meta.setTitle(titleBar || title);
@@ -30,7 +28,7 @@ export class OpenGraphService {
 
   setImage(url: string, imageExtras?: VideoExtras): void {
     this._meta.updateTag({ property: 'og:image:url', content: url }, true);
-    if (isNil(imageExtras)) {
+    if (imageExtras === undefiend) {
       return;
     }
     if (imageExtras.secureUrl) {
@@ -52,7 +50,7 @@ export class OpenGraphService {
 
   setVideo(url: string, videoExtras?: VideoExtras): void {
     this._meta.updateTag({ property: 'og:video:url', content: url }, true);
-    if (isNil(videoExtras)) {
+    if (videoExtras === undefined) {
       return;
     }
     if (videoExtras.secureUrl) {
@@ -74,7 +72,7 @@ export class OpenGraphService {
 
   setAudio(url: string, audioExtras?: AudioExtras): void {
     this._meta.updateTag({ property: 'og:audio:url', content: url }, true);
-    if (isNil(audioExtras)) {
+    if (audioExtras === undefined) {
       return;
     }
     if (audioExtras.secureUrl) {

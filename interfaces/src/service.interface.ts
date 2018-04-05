@@ -1,7 +1,5 @@
 // NgRx
 import { Store } from '@ngrx/store';
-// Lodash
-import isNil from 'lodash/isNil';
 // RxJS
 import { Observable } from 'rxjs/Observable';
 import { Subscription } from 'rxjs/Subscription';
@@ -22,7 +20,7 @@ export abstract class Service<T extends State> {
   }
 
   subscribe(): void {
-    if (isNil(this._subscription)) {
+    if (this._subscription === undefined) {
       this._subscription = this.stateChange.subscribe((state: T) => {
         this.state = state;
       });
@@ -30,7 +28,7 @@ export abstract class Service<T extends State> {
   }
 
   unsubscribe(): void {
-    if (!isNil(this._subscription)) {
+    if (this._subscription !== undefined) {
       this._subscription.unsubscribe();
     }
   }

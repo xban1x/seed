@@ -1,7 +1,6 @@
 // Libs
 import { OrientationType } from '@seed/enums';
 import { State } from '@seed/interfaces';
-import isNil from 'lodash/isNil';
 
 export class LayoutState extends State {
   static readonly STORE_NAME = 'layout';
@@ -34,7 +33,7 @@ export class LayoutState extends State {
     return { width: this._width, height: this._height };
   }
   set viewport(val: { width: number; height: number }) {
-    if (isNil(val) || !Number.isInteger(val.width) || !Number.isInteger(val.height)) {
+    if (!Number.isInteger(val.width) || !Number.isInteger(val.height)) {
       return;
     }
     this._width = val.width;

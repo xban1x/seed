@@ -14,7 +14,7 @@
     "lib": ["es2017", "dom"],
     "baseUrl": ".",
     "paths": {
-      "@seed/*": ["seed/*"],
+      "@seed/*": ["./*"],
       "lodash/*": ["node_modules/lodash-es/*"]
     }
   }

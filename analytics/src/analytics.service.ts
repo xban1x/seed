@@ -6,8 +6,6 @@ import { Store } from '@ngrx/store';
 import { Service } from '@seed/interfaces';
 import { Config } from '@seed/models';
 import { LayoutService, LayoutState, PlatformService, PlatformState } from '@seed/util';
-// Lodash
-import isNil from 'lodash/isNil';
 // RxJS
 import { Observable } from 'rxjs/Observable';
 import { filter } from 'rxjs/operators/filter';
@@ -68,7 +66,7 @@ export class AnalyticsService<T extends any | AnalyticKey = AnalyticKey> extends
     }
     this.state.events.forEach(event => {
       const item = this.state.responses.find(response => response.id === event.id);
-      if (isNil(item)) {
+      if (item === undefined) {
         this._store.dispatch(new RetryEventAction(event));
       }
     });
@@ -79,11 +77,11 @@ export class AnalyticsService<T extends any | AnalyticKey = AnalyticKey> extends
   }
 
   updateProperty(property: Property<T>, override = false): void {
-    if (isNil(property.value) || property.value === '') {
+    if (property.value === undefined || property.value === '') {
       return;
     }
     const item = this.state.properties.find(prop => property.name === prop.name);
-    if (!isNil(item) && (property.value === item.value || !override)) {
+    if (item !== undefined && (property.value === item.value || !override)) {
       return;
     }
     this._store.dispatch(new UpdatePropertyAction({ property, override }));
@@ -103,7 +101,7 @@ export class AnalyticsService<T extends any | AnalyticKey = AnalyticKey> extends
     this._store.dispatch(new SendEventAction({ id, event }));
     return this.stateChange.pipe(
       map(state => state.responses.find(val => val.id === id)),
-      filter(response => !isNil(response)),
+      filter(response => response !== undefined),
       map(response => (response || { response: false }).response),
       first()
     );

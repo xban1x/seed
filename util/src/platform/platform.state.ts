@@ -1,10 +1,5 @@
 // Libs
-import {
-  Browser,
-  DeviceType,
-  OperatingSystem,
-  RenderingMode
-} from '@seed/enums';
+import { Browser, DeviceType, OperatingSystem, RenderingMode } from '@seed/enums';
 import { State } from '@seed/interfaces';
 
 export class PlatformState extends State {
@@ -13,74 +8,74 @@ export class PlatformState extends State {
   /**
    * Rendering Mode
    */
-  renderingMode: RenderingMode;
+  renderingMode?: RenderingMode;
 
   /** Online */
-  online: boolean;
+  online?: boolean;
 
   /**
    * Navigation Type
    */
-  navigationType: string;
+  navigationType?: string;
 
   /**
    * Device Name
    */
-  deviceName: string | 'iPhone' | 'iPod' | 'iPad';
+  deviceName?: string | 'iPhone' | 'iPod' | 'iPad';
 
   /**
    * Device Type
    */
-  deviceType: DeviceType;
+  deviceType?: DeviceType;
 
   /**
    * Operating System
    */
-  operatingSystem: OperatingSystem;
+  operatingSystem?: OperatingSystem;
 
   /**
    * Browser
    */
-  browser: Browser;
+  browser?: Browser;
 
   // ### VERSIONS ###
 
   /**
    * OS Version
    */
-  operatingSystemVersion: string;
+  operatingSystemVersion?: string;
 
   /**
    * Browser Version
    */
-  browserVersion: string;
+  browserVersion?: string;
 
   // ### Referrers ###
 
   /**
    * Initial Referrer
    */
-  initialReferrer: string;
+  initialReferrer?: string;
 
   /**
    * Initial Referrer Domain
    */
-  initialReferrerDomain: string;
+  initialReferrerDomain?: string;
 
   // ### Browser ###
 
   /**
    * User Agent
    */
-  userAgent: string;
+  userAgent?: string;
 
   /**
    * Connection Type
    */
-  connectionType: string;
+  connectionType?: string;
 
   /**
    * Connection Effective Type
    */
-  connectionEffectiveType: string;
+  connectionEffectiveType?: string;
 }
