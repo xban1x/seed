@@ -62,7 +62,7 @@ export class PlatformService extends Service<PlatformState> {
         state.navigationType = NavigationType.toString(performance.navigation.type);
 
         this._router.events.pipe(filter((event: any) => event instanceof NavigationEnd)).subscribe(() => {
-          if (perfromance === undefined || performance.navigation === undefined) {
+          if (performance === undefined || performance.navigation === undefined) {
             return;
           }
           const newState = new PlatformState(this.state);

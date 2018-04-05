@@ -28,7 +28,7 @@ export class OpenGraphService {
 
   setImage(url: string, imageExtras?: VideoExtras): void {
     this._meta.updateTag({ property: 'og:image:url', content: url }, true);
-    if (imageExtras === undefiend) {
+    if (imageExtras === undefined) {
       return;
     }
     if (imageExtras.secureUrl) {
