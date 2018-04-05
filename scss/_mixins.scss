@@ -3,6 +3,8 @@
 @mixin theme($theme, $typography) {
   @if map-has-key($typography, mobile) {
     @include mat-core(map-get($typography, mobile));
+  } @else {
+    @include mat-core();
   }
 
   @include angular-material-theme($theme);
@@ -82,12 +84,14 @@
 
   a,
   p,
+  span,
   .mat-tab-label,
   .mat-tab-link {
     @include mat-typography-level-to-styles($typography, body-1);
   }
   a > b,
-  p > b {
+  p > b,
+  span > b {
     @include mat-typography-level-to-styles($typography, body-2);
   }
 
