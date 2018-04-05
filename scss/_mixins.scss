@@ -15,7 +15,7 @@
       @include typography-rules(map-get($typography, mobile));
     }
     .mat-dialog-title,
-    .mat-dialog.content {
+    .mat-dialog-content {
       font-weight: 400;
     }
   }
@@ -27,7 +27,7 @@
         @include typography-rules(map-get($typography, tablet));
       }
       .mat-dialog-title,
-      .mat-dialog.content {
+      .mat-dialog-content {
         font-weight: 400;
       }
     }
@@ -40,7 +40,7 @@
         @include typography-rules(map-get($typography, laptop));
       }
       .mat-dialog-title,
-      .mat-dialog.content {
+      .mat-dialog-content {
         font-weight: 400;
       }
     }
@@ -53,7 +53,7 @@
         @include typography-rules(map-get($typography, desktop));
       }
       .mat-dialog-title,
-      .mat-dialog.content {
+      .mat-dialog-content {
         font-weight: 400;
       }
     }
@@ -66,7 +66,7 @@
         @include typography-rules(map-get($typography, wide-screen));
       }
       .mat-dialog-title,
-      .mat-dialog.content {
+      .mat-dialog-content {
         font-weight: 400;
       }
     }
