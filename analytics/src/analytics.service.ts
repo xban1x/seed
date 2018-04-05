@@ -72,7 +72,7 @@ export class AnalyticsService<T extends any | AnalyticKey = AnalyticKey> extends
     });
   }
 
-  getProperty(name: string): Property<T> {
+  getProperty(name: string): Property<T> | undefined {
     return this.state.properties.find(val => val.name === name);
   }
 
