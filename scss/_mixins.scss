@@ -1,51 +1,51 @@
 @import '~@angular/material/theming';
 
-@mixin theme($theme, $typograhy) {
-  @if map-has-key($typograhy, mobile) {
-    @include mat-core(map-get($typograhy, mobile));
+@mixin theme($theme, $typography) {
+  @if map-has-key($typography, mobile) {
+    @include mat-core(map-get($typography, mobile));
   }
 
   @include angular-material-theme($theme);
 
-  @if map-has-key($typograhy, mobile) {
-    @include typography-rules(map-get($typograhy, mobile));
+  @if map-has-key($typography, mobile) {
+    @include typography-rules(map-get($typography, mobile));
     .mat-list .mat-list-item .mat-list-text {
-      @include typography-rules(map-get($typograhy, mobile));
+      @include typography-rules(map-get($typography, mobile));
     }
   }
 
-  @if map-has-key($typograhy, tablet) {
+  @if map-has-key($typography, tablet) {
     @media screen and (min-width: 600px) and (max-width: 959px) {
-      @include typography-rules(map-get($typograhy, tablet));
+      @include typography-rules(map-get($typography, tablet));
       .mat-list .mat-list-item .mat-list-text {
-        @include typography-rules(map-get($typograhy, tablet));
+        @include typography-rules(map-get($typography, tablet));
       }
     }
   }
 
-  @if map-has-key($typograhy, laptop) {
+  @if map-has-key($typography, laptop) {
     @media screen and (min-width: 960px) and (max-width: 1279px) {
-      @include typography-rules(map-get($typograhy, laptop));
+      @include typography-rules(map-get($typography, laptop));
       .mat-list .mat-list-item .mat-list-text {
-        @include typography-rules(map-get($typograhy, laptop));
+        @include typography-rules(map-get($typography, laptop));
       }
     }
   }
 
-  @if map-has-key($typograhy, desktop) {
+  @if map-has-key($typography, desktop) {
     @media screen and (min-width: 1280px) and (max-width: 1919px) {
-      @include typography-rules(map-get($typograhy, desktop));
+      @include typography-rules(map-get($typography, desktop));
       .mat-list .mat-list-item .mat-list-text {
-        @include typography-rules(map-get($typograhy, desktop));
+        @include typography-rules(map-get($typography, desktop));
       }
     }
   }
 
-  @if map-has-key($typograhy, wide-screen) {
+  @if map-has-key($typography, wide-screen) {
     @media screen and (min-width: 1920px) {
-      @include typography-rules(map-get($typograhy, wide-screen));
+      @include typography-rules(map-get($typography, wide-screen));
       .mat-list .mat-list-item .mat-list-text {
-        @include typography-rules(map-get($typograhy, wide-screen));
+        @include typography-rules(map-get($typography, wide-screen));
       }
     }
   }
