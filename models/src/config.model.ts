@@ -17,6 +17,7 @@ export class Config {
 		hmr: boolean;
 	};
 	staticMetadata?: MetaDefinition[];
-	analyticsUrl?: string;
+  analyticsUrl?: string;
+  apiUrl?: string;
 	sentry?: string;
 }
