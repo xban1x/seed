@@ -10,66 +10,42 @@
   @include mat-core-theme($theme);
 
   @if map-has-key($typography, mobile) {
-    @include typography-rules(map-get($typography, mobile));
-    .mat-list .mat-list-item .mat-list-text {
-      @include typography-rules(map-get($typography, mobile));
-    }
-    .mat-dialog-title,
-    .mat-dialog-content {
-      font-weight: 400;
-    }
+    @include material-typography-rules(map-get($typography, mobile));
   }
 
   @if map-has-key($typography, tablet) {
     @media screen and (min-width: 600px) and (max-width: 959px) {
-      @include typography-rules(map-get($typography, tablet));
-      .mat-list .mat-list-item .mat-list-text {
-        @include typography-rules(map-get($typography, tablet));
-      }
-      .mat-dialog-title,
-      .mat-dialog-content {
-        font-weight: 400;
-      }
+      @include material-typography-rules(map-get($typography, tablet));
     }
   }
 
   @if map-has-key($typography, laptop) {
     @media screen and (min-width: 960px) and (max-width: 1279px) {
-      @include typography-rules(map-get($typography, laptop));
-      .mat-list .mat-list-item .mat-list-text {
-        @include typography-rules(map-get($typography, laptop));
-      }
-      .mat-dialog-title,
-      .mat-dialog-content {
-        font-weight: 400;
-      }
+      @include material-typography-rules(map-get($typography, laptop));
     }
   }
 
   @if map-has-key($typography, desktop) {
     @media screen and (min-width: 1280px) and (max-width: 1919px) {
-      @include typography-rules(map-get($typography, desktop));
-      .mat-list .mat-list-item .mat-list-text {
-        @include typography-rules(map-get($typography, desktop));
-      }
-      .mat-dialog-title,
-      .mat-dialog-content {
-        font-weight: 400;
-      }
+      @include material-typography-rules(map-get($typography, desktop));
     }
   }
 
   @if map-has-key($typography, wide-screen) {
     @media screen and (min-width: 1920px) {
-      @include typography-rules(map-get($typography, wide-screen));
-      .mat-list .mat-list-item .mat-list-text {
-        @include typography-rules(map-get($typography, wide-screen));
-      }
-      .mat-dialog-title,
-      .mat-dialog-content {
-        font-weight: 400;
-      }
+      @include material-typography-rules(map-get($typography, wide-screen));
     }
+  }
+}
+
+@mixin material-typography-rules($typography) {
+  @include typography-rules($typography);
+  .mat-list .mat-list-item .mat-list-text {
+    @include typography-rules($typography);
+  }
+  .mat-dialog-title,
+  .mat-dialog-content {
+    font-weight: 400;
   }
 }
 
