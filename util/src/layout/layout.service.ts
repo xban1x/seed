@@ -82,10 +82,12 @@ export class LayoutService extends Service<LayoutState> {
     }
     const state = new LayoutState(this.state);
     state.backgroundColor = color;
-    if (this._rootCmp !== undefined) {
-      this.renderer.setStyle(this._rootCmp.nativeElement, 'background-color', color);
+    if (this.renderer !== undefined) {
+      if (this._rootCmp !== undefined) {
+        this.renderer.setStyle(this._rootCmp.nativeElement, 'background-color', color);
+      }
+      this.renderer.setStyle(this._document.body, 'background-color', color);
     }
-    this.renderer.setStyle(this._document.body, 'background-color', color);
     this._setLayoutState(state);
   }
 
