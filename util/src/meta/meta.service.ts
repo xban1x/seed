@@ -52,7 +52,9 @@ export class MetaService extends Service<MetaState> {
     for (const elem of nodeList) {
       const attributeMap: MetaDefinition[] = Array.from(elem.attributes).map(attr => {
         const obj: any = {};
-        obj[attr.nodeName] = attr.nodeValue;
+        if (attr !== undefined) {
+          obj[attr.nodeName] = attr.nodeValue;
+        }
         return obj;
       });
       const attributes: MetaDefinition | null = attributeMap.reduce((sum, n) => {

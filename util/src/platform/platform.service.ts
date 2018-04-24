@@ -1,4 +1,3 @@
-import { Platform } from '@angular/cdk/platform';
 import { DOCUMENT } from '@angular/common';
 // Angular
 import { Inject, Injectable, InjectionToken, Optional } from '@angular/core';
@@ -14,6 +13,8 @@ import isEqual from 'lodash/isEqual';
 import { filter } from 'rxjs/operators/filter';
 import { SetPlatformAction } from './platform.action';
 import { PlatformState } from './platform.state';
+import { PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 export const HEADERS = new InjectionToken<string>('Headers');
 
@@ -23,7 +24,7 @@ const TRANSFER_STATE_KEY = makeStateKey<PlatformState>('PLATFORM_STATE');
 export class PlatformService extends Service<PlatformState> {
   constructor(
     protected readonly _store: Store<any>,
-    private readonly _platform: Platform,
+    @Inject(PLATFORM_ID) private readonly _platform: Object,
     private readonly _router: Router,
     @Inject(DOCUMENT) private readonly _document: Document,
     private readonly _transfer: TransferState,
@@ -38,7 +39,7 @@ export class PlatformService extends Service<PlatformState> {
   private async _init(): Promise<void> {
     let state: PlatformState = new PlatformState(this.state);
 
-    if (this._platform.isBrowser) {
+    if (isPlatformBrowser(this._platform)) {
       if (this._transfer.hasKey(TRANSFER_STATE_KEY)) {
         state = this._transfer.get(TRANSFER_STATE_KEY, new PlatformState());
         const stateBrowser = this._initState();
@@ -106,7 +107,7 @@ export class PlatformService extends Service<PlatformState> {
   private _initState(headers?: any): PlatformState {
     let userAgent: string | null = null;
 
-    if (this._platform.isBrowser) {
+    if (isPlatformBrowser(this._platform)) {
       userAgent = navigator.userAgent;
     } else if (headers !== null) {
       userAgent = headers['user-agent'];
@@ -142,7 +143,7 @@ export class PlatformService extends Service<PlatformState> {
   }
 
   private _extractDomain(url: string): string {
-    if (url === '' || url === '$direct') {
+    if (url === undefined || url === '' || url === '$direct') {
       return url;
     }
     return new URL(url).hostname;
@@ -324,7 +325,7 @@ export class PlatformService extends Service<PlatformState> {
   private _setPlatformState(state: PlatformState): void {
     if (!isEqual(this.state, state)) {
       this._store.dispatch(new SetPlatformAction(state));
-      if (this._platform.isBrowser) {
+      if (isPlatformBrowser(this._platform)) {
         return;
       }
       this._transfer.set(TRANSFER_STATE_KEY, state);
@@ -434,7 +435,7 @@ export class PlatformService extends Service<PlatformState> {
   }
 
   getReferrer(): string {
-    return this._document.referrer || '$direct';
+    return this.isBrowser() ? this._document.referrer || '$direct' : undefined;
   }
 
   getReferrerDomain(): string {
