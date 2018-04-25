@@ -22,6 +22,10 @@ export class OpenGraphService {
     this._meta.updateTag({ property: 'og:description', content: description }, true);
   }
 
+  setKeywords(keywords: string): void {
+    this._meta.updateTag({ property: 'keywords', content: keywords }, true);
+  }
+
   setType(type: OGType): void {
     this._meta.updateTag({ property: 'og:type', content: type }, true);
   }
