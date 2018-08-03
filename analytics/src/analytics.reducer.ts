@@ -27,6 +27,7 @@ export function analyticsReducer(state: AnalyticsState = DEFAULT_STATE, action: 
 
       if (modified) {
         result.propertiesVersions.push(state.properties);
+        result.propertiesVersions.splice(10, 100);
       }
 
       return result;
@@ -39,6 +40,7 @@ export function analyticsReducer(state: AnalyticsState = DEFAULT_STATE, action: 
         result.properties.splice(index, 1);
         result.properties = [...result.properties];
         result.propertiesVersions.push(state.properties);
+        result.propertiesVersions.splice(10, 100);
       }
       return result;
     }
@@ -46,12 +48,14 @@ export function analyticsReducer(state: AnalyticsState = DEFAULT_STATE, action: 
       const payload = action.payload;
       const result = { ...state };
       result.events.push(payload);
+      result.events.splice(10, 100);
       return result;
     }
     case AnalyticsActions.SEND_RESPONSE: {
       const payload = action.payload;
       const result = { ...state };
       result.responses.push(payload);
+      result.responses.splice(10, 100);
       return result;
     }
     default: {
