@@ -3,7 +3,7 @@ import { Injectable, ErrorHandler } from '@angular/core';
 // Libs
 import { Config } from '@seed/models';
 // Sentry
-import * as Raven from 'raven-js';
+import * as Sentry from '@sentry/browser';
 
 @Injectable()
 export class SentryErrorHandler implements ErrorHandler {
@@ -11,22 +11,16 @@ export class SentryErrorHandler implements ErrorHandler {
     if (this._config.sentry === undefined) {
       throw new Error('Missing token for Sentry!');
     }
-    const SENTRY_CONFIG: Raven.RavenOptions = {
+    const SENTRY_CONFIG: Sentry.BrowserOptions = {
+      dsn: this._config.sentry,
       environment: this._config.env.type,
-      release: this._config.app.version,
-      tags: {
-        name: this._config.app.name,
-        mode: '' + this._config.env.production,
-        debug: '' + this._config.env.debug,
-        gitHash: this._config.app.hash,
-        buildTime: '' + this._config.app.timestamp
-      }
+      release: this._config.app.version
     };
-    Raven.config(this._config.sentry, SENTRY_CONFIG).install();
+    Sentry.init(SENTRY_CONFIG);
   }
 
   handleError(error: any): void {
-    Raven.captureException(error.originalError || error);
+    Sentry.captureException(error.originalError || error);
     if (this._config.env.debug) {
       console.error(error);
     }
