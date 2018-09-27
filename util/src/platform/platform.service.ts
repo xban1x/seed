@@ -195,7 +195,7 @@ export class PlatformService extends Service<PlatformState> {
   private _findOSVersion(state: PlatformState) {
     if (state.operatingSystem === OperatingSystem.IOS) {
       const match = state.userAgent.match(/(iPhone|CPU) OS (\d\_?)*/g);
-      if (match === undefined) {
+      if (!match || match.length === 0) {
         return;
       }
       state.operatingSystemVersion = match[0].split(' ', 3)[2];
@@ -203,7 +203,7 @@ export class PlatformService extends Service<PlatformState> {
     }
     if (state.operatingSystem === OperatingSystem.ANDROID) {
       const match = state.userAgent.match(/Android (\d\.?)*/g);
-      if (match === undefined) {
+      if (!match || match.length === 0) {
         return;
       }
       state.operatingSystemVersion = match[0].split(' ', 2)[1];
@@ -211,7 +211,7 @@ export class PlatformService extends Service<PlatformState> {
     }
     if (state.operatingSystem === OperatingSystem.WINDOWS) {
       const match = state.userAgent.match(/Windows NT (\d*\_?)*/g);
-      if (match === undefined) {
+      if (!match || match.length === 0) {
         return;
       }
       state.operatingSystemVersion = match[0].split(' ', 3)[2];
@@ -219,7 +219,7 @@ export class PlatformService extends Service<PlatformState> {
     }
     if (state.operatingSystem === OperatingSystem.MAC_OS) {
       const match = state.userAgent.match(/Mac OS X (\d*\_?)*/g);
-      if (match === undefined) {
+      if (!match || match.length === 0) {
         return;
       }
       state.operatingSystemVersion = match[0].split(' ', 4)[3];
@@ -230,7 +230,7 @@ export class PlatformService extends Service<PlatformState> {
   private _findBrowserVersion(state: PlatformState) {
     if (state.browser === Browser.SAFARI || state.browser === Browser.SAFARI_IOS) {
       const match = state.userAgent.match(/Version\/(\d*\.?)*/g);
-      if (match === undefined) {
+      if (!match || match.length === 0) {
         return;
       }
       state.browserVersion = match[0].split('/', 2)[1];
@@ -238,7 +238,7 @@ export class PlatformService extends Service<PlatformState> {
     }
     if (state.browser === Browser.CHROME || state.browser === Browser.CHROME_IOS) {
       const match = state.userAgent.match(/(CriOS|Chrome)\/(\d*\.?)*/g);
-      if (match === undefined) {
+      if (!match || match.length === 0) {
         return;
       }
       state.browserVersion = match[0].split('/', 2)[1];
@@ -246,7 +246,7 @@ export class PlatformService extends Service<PlatformState> {
     }
     if (state.browser === Browser.FIREFOX || state.browser === Browser.FIREFOX_IOS) {
       const match = state.userAgent.match(/(FxiOS|Firefox)\/(\d*\.?)*/g);
-      if (match === undefined) {
+      if (!match || match.length === 0) {
         return;
       }
       state.browserVersion = match[0].split('/', 2)[1];
@@ -254,7 +254,7 @@ export class PlatformService extends Service<PlatformState> {
     }
     if (state.browser === Browser.SAMSUNG_INTERNET) {
       const match = state.userAgent.match(/SamsungBrowser\/\d\.\d/g);
-      if (match === undefined) {
+      if (!match || match.length === 0) {
         return;
       }
       state.browserVersion = match[0].split('/', 2)[1];
@@ -262,7 +262,7 @@ export class PlatformService extends Service<PlatformState> {
     }
     if (state.browser === Browser.EDGE) {
       const match = state.userAgent.match(/Edge\/(\d*\.?)*/g);
-      if (match === undefined) {
+      if (!match || match.length === 0) {
         return;
       }
       state.browserVersion = match[0].split('/', 2)[1];
@@ -270,7 +270,7 @@ export class PlatformService extends Service<PlatformState> {
     }
     if (state.browser === Browser.GOOGLE_SEARCH_APP_IOS) {
       const match = state.userAgent.match(/GSA\/(\d*\.?)*/g);
-      if (match === undefined) {
+      if (!match || match.length === 0) {
         return;
       }
       state.browserVersion = match[0].split('/', 2)[1];
@@ -278,7 +278,7 @@ export class PlatformService extends Service<PlatformState> {
     }
     if (state.browser === Browser.IE) {
       const match = state.userAgent.match(/rv:\/(\d*\.?)*/g);
-      if (match === undefined) {
+      if (!match || match.length === 0) {
         return;
       }
       state.browserVersion = match[0].split('/', 2)[1];
@@ -301,11 +301,11 @@ export class PlatformService extends Service<PlatformState> {
         state.deviceName = 'iPod';
       }
     } else if (state.operatingSystem === OperatingSystem.ANDROID) {
-      const match = state.userAgent.match(/Android (\d\.?){1,3}; (\w*(-\w*)? )*/g)[0];
-      if (match === undefined) {
+      const match = state.userAgent.match(/Android (\d\.?){1,3}; (\w*(-\w*)? )*/g);
+      if (!match || match.length === 0) {
         return;
       }
-      const splits = match.trim().split(' ');
+      const splits = match[0].trim().split(' ');
       state.deviceName = splits[splits.length - 1];
     }
   }
