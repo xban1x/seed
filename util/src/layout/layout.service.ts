@@ -60,9 +60,14 @@ export class LayoutService extends Service<LayoutState> {
     this._viewport.change(100).subscribe(() => this._onResize());
 
     if (this._platform.isMobile()) {
-      this._appRef.isStable.pipe(filter(res => !!res), first()).subscribe(res => {
-        setInterval(() => this._onResize(), 500);
-      });
+      this._appRef.isStable
+        .pipe(
+          filter(res => !!res),
+          first()
+        )
+        .subscribe(res => {
+          setInterval(() => this._onResize(), 500);
+        });
     }
     return;
   }
@@ -82,8 +87,8 @@ export class LayoutService extends Service<LayoutState> {
     }
     const state = new LayoutState(this.state);
     state.backgroundColor = color;
-    if (this.renderer !== undefined) {
-      if (this._rootCmp !== undefined) {
+    if (this.renderer) {
+      if (this._rootCmp) {
         this.renderer.setStyle(this._rootCmp.nativeElement, 'background-color', color);
       }
       this.renderer.setStyle(this._document.body, 'background-color', color);
@@ -96,7 +101,7 @@ export class LayoutService extends Service<LayoutState> {
       return;
     }
     this._document.body.requestFullScreen();
-    if (this.state.backgroundColor === undefined) {
+    if (!this.state.backgroundColor) {
       this.setBackgroundColor('#fff');
     }
   }
@@ -133,7 +138,7 @@ export class LayoutService extends Service<LayoutState> {
         this._document.body.requestFullScreen;
       this._document.cancelFullScreen =
         this._document.webkitCancelFullScreen || this._document.mozCancelFullScreen || this._document.cancelFullScreen;
-      return this._document.body.requestFullScreen !== undefined && this._document.cancelFullScreen !== undefined;
+      return !!this._document.body.requestFullScreen && !!this._document.cancelFullScreen;
     } catch (err) {
       return false;
     }

@@ -40,7 +40,7 @@ export class MetaService extends Service<MetaState> {
     }
     this._setMetaState(state);
     this.state = state;
-    if (this._config.staticMetadata !== undefined) {
+    if (this._config.staticMetadata) {
       for (const tag of this._config.staticMetadata) {
         this.updateTag(tag, true);
       }
@@ -52,7 +52,7 @@ export class MetaService extends Service<MetaState> {
     for (const elem of nodeList) {
       const attributeMap: MetaDefinition[] = Array.from(elem.attributes).map(attr => {
         const obj: any = {};
-        if (attr !== undefined) {
+        if (attr) {
           obj[attr.nodeName] = attr.nodeValue;
         }
         return obj;
@@ -60,7 +60,7 @@ export class MetaService extends Service<MetaState> {
       const attributes: MetaDefinition | null = attributeMap.reduce((sum, n) => {
         return { ...sum, ...n };
       });
-      if (attributes !== undefined) {
+      if (attributes) {
         state.meta.push(attributes);
       }
     }
@@ -93,7 +93,7 @@ export class MetaService extends Service<MetaState> {
     const res = [];
     for (const tag of tags) {
       const meta = this.addTag(tag, forceCreation);
-      if (meta !== null) {
+      if (!meta) {
         res.push(meta);
       }
     }

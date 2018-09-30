@@ -8,7 +8,7 @@ import * as Sentry from '@sentry/browser';
 @Injectable()
 export class SentryErrorHandler implements ErrorHandler {
   constructor(private _config: Config) {
-    if (this._config.sentry === undefined) {
+    if (!this._config.sentry) {
       throw new Error('Missing token for Sentry!');
     }
     const SENTRY_CONFIG: Sentry.BrowserOptions = {

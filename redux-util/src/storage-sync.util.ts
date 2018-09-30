@@ -109,7 +109,7 @@ export const syncStateUpdate = (
   storageKeySerializer: (key: string) => string,
   removeOnUndefined: boolean
 ) => {
-  if (state === undefined) {
+  if (!state) {
     return;
   }
   keys.forEach(async key => {
@@ -189,11 +189,11 @@ export const syncStateUpdate = (
 };
 
 export const storageSync = (config: StorageConfig) => (reducer: any) => {
-  if (config.storageKeySerializer === undefined) {
+  if (!config.storageKeySerializer) {
     config.storageKeySerializer = key => key;
   }
 
-  if (config.restoreDates === undefined) {
+  if (!config.restoreDates) {
     config.restoreDates = true;
   }
 

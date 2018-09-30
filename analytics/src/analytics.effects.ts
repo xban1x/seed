@@ -25,13 +25,11 @@ export class AnalyticsEffects {
         if (!this._platform.isBrowser()) {
           return of({ type: '[Server] Noop' });
         }
-        return this._http
-          .post<boolean>(this._config.analyticsUrl as any, action.payload)
-          .pipe(
-            retry(3),
-            catchError(() => of<boolean>(false)),
-            map(res => new SendResponseAction({ id: action.payload.id, response: res }))
-          );
+        return this._http.post<boolean>(this._config.analyticsUrl as any, action.payload).pipe(
+          retry(3),
+          catchError(() => of<boolean>(false)),
+          map(res => new SendResponseAction({ id: action.payload.id, response: res }))
+        );
       })
     );
 
@@ -41,7 +39,7 @@ export class AnalyticsEffects {
     private readonly _actions: Actions,
     private _http: HttpClient
   ) {
-    if (this._config.analyticsUrl === undefined) {
+    if (!this._config.analyticsUrl) {
       throw new Error('Config: Analytics URL not defined');
     }
   }

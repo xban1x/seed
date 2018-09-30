@@ -52,18 +52,18 @@ export class PlatformService extends Service<PlatformState> {
       }
 
       // Online handling
-      if (navigator.onLine !== undefined) {
+      if (navigator.onLine) {
         state.online = navigator.onLine;
         window.addEventListener('online', () => this._handleOnlineOffline());
         window.addEventListener('offline', () => this._handleOnlineOffline());
       }
 
       // Navigation Type handling
-      if (performance !== undefined && performance.navigation !== undefined) {
+      if (performance && performance.navigation) {
         state.navigationType = NavigationType.toString(performance.navigation.type);
 
         this._router.events.pipe(filter((event: any) => event instanceof NavigationEnd)).subscribe(() => {
-          if (performance === undefined || performance.navigation === undefined) {
+          if (!performance || !performance.navigation) {
             return;
           }
           const newState = new PlatformState(this.state);
@@ -76,12 +76,12 @@ export class PlatformService extends Service<PlatformState> {
       }
 
       // Connection Type handling
-      if (navigator.connection !== undefined) {
+      if (navigator.connection) {
         state.connectionType = navigator.connection.type;
         state.connectionEffectiveType = navigator.connection.effectiveType;
 
         navigator.connection.addEventListener('change', () => {
-          if (navigator.connection === undefined) {
+          if (!navigator.connection) {
             return;
           }
           const newState = new PlatformState(this.state);
@@ -109,13 +109,13 @@ export class PlatformService extends Service<PlatformState> {
 
     if (isPlatformBrowser(this._platform)) {
       userAgent = navigator.userAgent;
-    } else if (headers !== null) {
+    } else if (headers) {
       userAgent = headers['user-agent'];
     }
 
     const state = new PlatformState(this.state);
 
-    if (userAgent === null) {
+    if (!userAgent) {
       return state;
     }
 
@@ -132,10 +132,10 @@ export class PlatformService extends Service<PlatformState> {
     this._findBrowserVersion(state);
     this._findDeviceName(state);
 
-    if (state.browserVersion !== undefined) {
+    if (state.browserVersion) {
       state.browserVersion = state.browserVersion.replace(/(-|_| |\/|,)/g, '.');
     }
-    if (state.operatingSystemVersion !== undefined) {
+    if (state.operatingSystemVersion) {
       state.operatingSystemVersion = state.operatingSystemVersion.replace(/(-|_| |\/|,)/g, '.');
     }
 
@@ -143,7 +143,7 @@ export class PlatformService extends Service<PlatformState> {
   }
 
   private _extractDomain(url: string): string {
-    if (url === undefined || url === '' || url === '$direct') {
+    if (!url || url === '' || url === '$direct') {
       return url;
     }
     return new URL(url).hostname;
@@ -311,7 +311,7 @@ export class PlatformService extends Service<PlatformState> {
   }
 
   private _handleOnlineOffline(): void {
-    if (navigator.onLine === undefined) {
+    if (!navigator.onLine) {
       return;
     }
     const state = new PlatformState(this.state);
@@ -349,14 +349,14 @@ export class PlatformService extends Service<PlatformState> {
   }
 
   isOSVersion(target: number): boolean {
-    if (this.state.operatingSystemVersion === undefined) {
+    if (!this.state.operatingSystemVersion) {
       return false;
     }
     return this.state.operatingSystemVersion.startsWith('' + target);
   }
 
   isBrowserVersion(target: number): boolean {
-    if (this.state.browserVersion === undefined) {
+    if (!this.state.browserVersion) {
       return false;
     }
     return this.state.browserVersion.startsWith('' + target);

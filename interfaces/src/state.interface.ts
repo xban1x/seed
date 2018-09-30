@@ -1,6 +1,6 @@
 export abstract class State {
   constructor(initial?: any) {
-    if (initial === undefined) {
+    if (!initial) {
       return;
     }
     const keys = Object.keys(initial);

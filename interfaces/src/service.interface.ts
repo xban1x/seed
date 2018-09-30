@@ -20,7 +20,7 @@ export abstract class Service<T extends State> {
   }
 
   subscribe(): void {
-    if (this._subscription === undefined) {
+    if (!this._subscription) {
       this._subscription = this.stateChange.subscribe((state: T) => {
         this.state = state;
       });
@@ -28,7 +28,7 @@ export abstract class Service<T extends State> {
   }
 
   unsubscribe(): void {
-    if (this._subscription !== undefined) {
+    if (this._subscription) {
       this._subscription.unsubscribe();
     }
   }

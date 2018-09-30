@@ -60,5 +60,5 @@ function _log(severity: LogSeverity, code: LogCode, message?: string): void {
 }
 
 function _sanitizeMessage(code: LogCode, message?: string): string {
-  return new Date().toISOString() + ':' + code + (message !== undefined ? ':' + message : '');
+  return new Date().toISOString() + ':' + code + (message ? ':' + message : '');
 }

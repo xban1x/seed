@@ -32,7 +32,7 @@ export class OpenGraphService {
 
   setImage(url: string, imageExtras?: VideoExtras): void {
     this._meta.updateTag({ property: 'og:image:url', content: url }, true);
-    if (imageExtras === undefined) {
+    if (!imageExtras) {
       return;
     }
     if (imageExtras.secureUrl) {
@@ -54,7 +54,7 @@ export class OpenGraphService {
 
   setVideo(url: string, videoExtras?: VideoExtras): void {
     this._meta.updateTag({ property: 'og:video:url', content: url }, true);
-    if (videoExtras === undefined) {
+    if (!videoExtras) {
       return;
     }
     if (videoExtras.secureUrl) {
@@ -76,7 +76,7 @@ export class OpenGraphService {
 
   setAudio(url: string, audioExtras?: AudioExtras): void {
     this._meta.updateTag({ property: 'og:audio:url', content: url }, true);
-    if (audioExtras === undefined) {
+    if (!audioExtras) {
       return;
     }
     if (audioExtras.secureUrl) {

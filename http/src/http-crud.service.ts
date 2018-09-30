@@ -40,35 +40,35 @@ export abstract class HttpCRUDService<P extends CRUDObject> {
   }
 
   create(obj: P, urlParams?: string[]): Observable<P | HttpError> {
-    if (urlParams === undefined) {
+    if (!urlParams) {
       return this.createRequest(obj, this.url, this.defaultOptions, this.defaultErrorHandler);
     }
     return this.createRequest(obj, this.sanitizeURL(urlParams), this.defaultOptions, this.defaultErrorHandler);
   }
 
   read(obj: string, urlParams?: string[], params?: RestParams): Observable<P | HttpError> {
-    if (urlParams === undefined) {
+    if (!urlParams) {
       return this.readRequest(obj, params, this.url, this.defaultOptions, this.defaultErrorHandler);
     }
     return this.readRequest(obj, params, this.sanitizeURL(urlParams), this.defaultOptions, this.defaultErrorHandler);
   }
 
   readAll(urlParams?: string[], params?: RestParams): Observable<P[] | HttpError> {
-    if (urlParams === undefined) {
+    if (!urlParams) {
       return this.readAllRequest(params, this.url, this.defaultOptions, this.defaultErrorHandler);
     }
     return this.readAllRequest(params, this.sanitizeURL(urlParams), this.defaultOptions, this.defaultErrorHandler);
   }
 
   update(obj: P, urlParams?: string[]): Observable<P | HttpError> {
-    if (urlParams === undefined) {
+    if (!urlParams) {
       return this.updateRequest(obj, this.url, this.defaultOptions, this.defaultErrorHandler);
     }
     return this.updateRequest(obj, this.sanitizeURL(urlParams), this.defaultOptions, this.defaultErrorHandler);
   }
 
   delete(obj: P, urlParams?: string[]): Observable<boolean | HttpError> {
-    if (urlParams === undefined) {
+    if (!urlParams) {
       return this.deleteRequest(obj, this.url, this.defaultOptions, this.defaultErrorHandler);
     }
     return this.deleteRequest(obj, this.sanitizeURL(urlParams), this.defaultOptions, this.defaultErrorHandler);
@@ -138,7 +138,7 @@ export abstract class HttpCRUDService<P extends CRUDObject> {
   }
 
   protected sanitizeRestParams(restParams: RestParams): string {
-    if (restParams === undefined) {
+    if (!restParams) {
       return '';
     }
     let buffer = '?';
